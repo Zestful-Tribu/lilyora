@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:lilyora/screens/capture_screen.dart';
+import 'package:lilyora/screens/flower_screen.dart';
+import 'package:lilyora/screens/getting_started.dart';
+import 'package:lilyora/screens/home_screen.dart';
+import 'package:lilyora/screens/intro_screen.dart';
+import 'package:lilyora/screens/profile_screen.dart';
+import 'package:lilyora/screens/search_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,31 +20,17 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.green,
       ),
-      home: FirstView(),
+      home: IntroScreen(),
+      routes: {
+        IntroScreen.id: (context) => IntroScreen(),
+        HomeScreen.id: (context) => HomeScreen(),
+        CaptureScreen.id: (context) => CaptureScreen(),
+        SearchScreen.id: (context) => SearchScreen(),
+        ProfileScreen.id: (context) => ProfileScreen(),
+        GettingStarted.id: (context) => GettingStarted(),
+        FlowerScreen.id: (context) => FlowerScreen(),
+      },
     );
   }
 }
-
-class FirstView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Center(
-          child: Container(
-            child: Text(
-              "ZestfulTribu presents Lilyora",
-              style: TextStyle(
-                color: Colors.greenAccent,
-                fontSize: 40,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 
