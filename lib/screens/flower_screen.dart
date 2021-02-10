@@ -34,11 +34,11 @@ class _MyAppState extends State<MyApp> {
           ),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.notifications_active_outlined),
+              icon: Icon(Icons.notifications_active),
               onPressed: () {},
             ),
             IconButton(
-              icon: Icon(Icons.account_circle_outlined),
+              icon: Icon(Icons.account_circle),
               onPressed: () {},
             ),
           ],
@@ -75,7 +75,7 @@ class _MyAppState extends State<MyApp> {
                       child: DropdownButton(
                           hint: Text("Medical Values"),
                           dropdownColor: Colors.grey,
-                          icon: Icon(Icons.arrow_drop_down_circle_outlined),
+                          icon: Icon(Icons.arrow_drop_down_circle),
                           isExpanded: true,
                           value:valueChoose,
                           onChanged: (newValue){
@@ -113,7 +113,7 @@ class _MyAppState extends State<MyApp> {
                       child: DropdownButton(
                           hint: Text("Cosmetic"),
                           dropdownColor: Colors.grey,
-                          icon: Icon(Icons.arrow_drop_down_circle_outlined),
+                          icon: Icon(Icons.arrow_drop_down_circle),
                           isExpanded: true,
                           value:valueChoose,
                           onChanged: (newValue){
@@ -151,7 +151,7 @@ class _MyAppState extends State<MyApp> {
                       child: DropdownButton(
                           hint: Text("Decarative"),
                           dropdownColor: Colors.grey,
-                          icon: Icon(Icons.arrow_drop_down_circle_outlined),
+                          icon: Icon(Icons.arrow_drop_down_circle),
                           isExpanded: true,
                           value:valueChoose,
                           onChanged: (newValue){
@@ -189,7 +189,7 @@ class _MyAppState extends State<MyApp> {
                       child: DropdownButton(
                           hint: Text("Edibility"),
                           dropdownColor: Colors.grey,
-                          icon: Icon(Icons.arrow_drop_down_circle_outlined),
+                          icon: Icon(Icons.arrow_drop_down_circle),
                           isExpanded: true,
                           value:valueChoose,
                           onChanged: (newValue){
