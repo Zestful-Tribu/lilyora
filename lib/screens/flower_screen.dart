@@ -20,6 +20,8 @@ class _MyAppState extends State<MyApp> {
   List listItem = [
     "Item1","Item2","Item3","Item4",
   ];
+  String dynamicDefinition;
+  bool open = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,11 +35,11 @@ class _MyAppState extends State<MyApp> {
           ),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.notifications_active_outlined),
+              icon: Icon(Icons.notifications_active),
               onPressed: () {},
             ),
             IconButton(
-              icon: Icon(Icons.account_circle_outlined),
+              icon: Icon(Icons.account_circle),
               onPressed: () {},
             ),
           ],
@@ -68,12 +70,11 @@ class _MyAppState extends State<MyApp> {
                 ],
               ),
               Container(
-                height:110 ,
                 child: Container(
                   margin:EdgeInsets.all(20.0),
-                  padding: EdgeInsets.all(1.0),
+                  padding: EdgeInsets.only(left: 8, right: 8),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
                       border: Border.all(
                         color: Colors.white,
 
@@ -82,24 +83,47 @@ class _MyAppState extends State<MyApp> {
                   ),
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: DropdownButton(
-                          hint: Text("Medical Values"),
-                          dropdownColor: Colors.grey,
-                          icon: Icon(Icons.arrow_drop_down_circle_outlined),
-                          isExpanded: true,
-                          value:valueChoose,
-                          onChanged: (newValue){
-                            setState(() {
-                              valueChoose = newValue;
-                            });
-                          },
-                          items: listItem.map((valueItem){
-                            return DropdownMenuItem(
-                              value:valueItem,
-                              child: Text(valueItem),
-                            );
-                          }).toList()
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Medical Uses",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.arrow_drop_down_circle),
+                                  onPressed: () {
+                                    setState(() {
+                                      open = !open;
+                                      if(open == true){
+                                        dynamicDefinition = "A rose is a woody "
+                                            "perennial flowering plant of the "
+                                            "genus Rosa, in the family Rosaceae, "
+                                            "or the flower it bears. ... They form "
+                                            "a group of plants that can be erect"
+                                            " shrubs, climbing, or trailing, with "
+                                            "stems that are often armed with sharp prickles.";
+                                      }else{
+                                        dynamicDefinition = null;
+                                      }
+
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: dynamicDefinition == null ? null : Text("$dynamicDefinition"),
+                          )
+
+                        ],
                       ),
                     ),
                   ),
@@ -125,7 +149,7 @@ class _MyAppState extends State<MyApp> {
                       child: DropdownButton(
                           hint: Text("Cosmetic"),
                           dropdownColor: Colors.grey,
-                          icon: Icon(Icons.arrow_drop_down_circle_outlined),
+                          icon: Icon(Icons.arrow_drop_down_circle),
                           isExpanded: true,
                           value:valueChoose,
                           onChanged: (newValue){
@@ -164,7 +188,7 @@ class _MyAppState extends State<MyApp> {
                       child: DropdownButton(
                           hint: Text("Decarative"),
                           dropdownColor: Colors.grey,
-                          icon: Icon(Icons.arrow_drop_down_circle_outlined),
+                          icon: Icon(Icons.arrow_drop_down_circle),
                           isExpanded: true,
                           value:valueChoose,
                           onChanged: (newValue){
@@ -203,7 +227,7 @@ class _MyAppState extends State<MyApp> {
                       child: DropdownButton(
                           hint: Text("Edibility"),
                           dropdownColor: Colors.grey,
-                          icon: Icon(Icons.arrow_drop_down_circle_outlined),
+                          icon: Icon(Icons.arrow_drop_down_circle),
                           isExpanded: true,
                           value:valueChoose,
                           onChanged: (newValue){
@@ -231,3 +255,23 @@ class _MyAppState extends State<MyApp> {
 
   }
 }
+
+
+// DropdownButton(
+// hint: Text("Medical Values"),
+// dropdownColor: Colors.grey,
+// icon: Icon(Icons.arrow_drop_down_circle),
+// isExpanded: true,
+// value:valueChoose,
+// onChanged: (newValue){
+// setState(() {
+// valueChoose = newValue;
+// });
+// },
+// items: listItem.map((valueItem){
+// return DropdownMenuItem(
+// value:valueItem,
+// child: Text(valueItem),
+// );
+// }).toList()
+// ),

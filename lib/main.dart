@@ -18,9 +18,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primaryColor: Colors.green,
+        primaryColor: Colors.deepPurpleAccent,
+        brightness: Brightness.dark,
       ),
-      home: HomeScreen(),
+      home: FlowerScreen(),
       routes: {
         IntroScreen.id: (context) => IntroScreen(),
         HomeScreen.id: (context) => HomeScreen(),
