@@ -4,18 +4,7 @@ class HomeScreen extends StatelessWidget {
   static String id = "home_screen";
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-          child: Container(
-            child: Text(
-              "Home Page",
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
-      ),
-    );
+    return HomePage();
   }
 }
 
@@ -30,34 +19,6 @@ class _HomePageState extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Color(0xFF822659),
-        title: Text('Lilyora'
-        ),
-        actions: [
-          IconButton(icon: Icon(Icons.notifications),
-            onPressed: () => {},),
-          IconButton(icon: Icon(Icons.account_circle),
-            onPressed: () => {},),
-        ],
-        leading: Icon(Icons.menu),
-
-      ),
-      bottomNavigationBar: BottomNavigationBar
-        (items: const <BottomNavigationBarItem> [
-        BottomNavigationBarItem(
-
-          icon: Icon(Icons.home),
-          title: Text('Home'),
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.camera),
-          title: Text('Capture'),
-        ),
-        BottomNavigationBarItem(icon: Icon(Icons.search),
-          title: Text('Search'),
-        ),
-      ],
-      ),
       body: Container(
         width: 300,
         height: 200 ,
