@@ -4,22 +4,7 @@ class HomeScreen extends StatelessWidget {
   static String id = "home_screen";
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
-    return Scaffold(
-      body: Center(
-          child: Container(
-            child: Text(
-              "Home Page",
-              style: TextStyle(
-                color: Colors.white,
-              ),
-            ),
-          ),
-      ),
-    );
-=======
     return HomePage();
->>>>>>> 98cef0a6882d1435272aef901f432f3a463992e1
   }
 }
 
