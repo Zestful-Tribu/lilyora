@@ -4,6 +4,7 @@ import 'package:lilyora/screens/flower_screen.dart';
 import 'package:lilyora/screens/getting_started.dart';
 import 'package:lilyora/screens/home_screen.dart';
 import 'package:lilyora/screens/intro_screen.dart';
+import 'package:lilyora/screens/navigation_screen.dart';
 import 'package:lilyora/screens/profile_screen.dart';
 import 'package:lilyora/screens/search_screen.dart';
 
@@ -21,8 +22,9 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.deepPurpleAccent,
         brightness: Brightness.dark,
       ),
-      home: FlowerScreen(),
+      home: NavigationScreen(),
       routes: {
+        NavigationScreen.id: (context) => NavigationScreen(),
         IntroScreen.id: (context) => IntroScreen(),
         HomeScreen.id: (context) => HomeScreen(),
         CaptureScreen.id: (context) => CaptureScreen(),

@@ -4,6 +4,17 @@ class SearchScreen extends StatelessWidget {
   static String id = "search_screen";
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      body: Center(
+        child: Container(
+          child: Text(
+            "Search Page",
+            style: TextStyle(
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -4,6 +4,8 @@ class ProfileScreen extends StatelessWidget {
   static String id = "profile_screen";
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      child: Text("Profile screen"),
+    );
   }
 }

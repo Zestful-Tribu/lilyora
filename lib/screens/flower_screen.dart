@@ -20,7 +20,11 @@ class _MyAppState extends State<MyApp> {
   List listItem = [
     "Item1","Item2","Item3","Item4",
   ];
+  String dynamicDefinitionMedical;
+  String dynamicDefinitionCosmetic;
   String dynamicDefinition;
+  bool openMedical = false;
+  bool openCosmetic = false;
   bool open = false;
   @override
   Widget build(BuildContext context) {
@@ -35,7 +39,7 @@ class _MyAppState extends State<MyApp> {
           ),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.notifications_active_outlined),
+              icon: Icon(Icons.notifications_active),
               onPressed: () {},
             ),
             IconButton(
@@ -104,9 +108,9 @@ class _MyAppState extends State<MyApp> {
                                   icon: Icon(Icons.arrow_drop_down_circle),
                                   onPressed: () {
                                     setState(() {
-                                      open = !open;
-                                      if(open == true){
-                                        dynamicDefinition = "Tulip flowers are known to be an excellent poultice for insect "
+                                      openMedical = !openMedical;
+                                      if(openMedical == true){
+                                        dynamicDefinitionMedical = "Tulip flowers are known to be an excellent poultice for insect "
                                             "bites, bee stings, burns, and rashes on the skin, as it "
                                             "gave quick relief with a soothing effect. Warm up 2-4 "
                                             "flowers in hot water. Dip a towel in the hot water and drop "
@@ -117,7 +121,7 @@ class _MyAppState extends State<MyApp> {
                                             "10 minutes using the hot towel.";
 
                                       }else{
-                                        dynamicDefinition = null;
+                                        dynamicDefinitionMedical = null;
                                       }
 
                                     });
@@ -127,7 +131,7 @@ class _MyAppState extends State<MyApp> {
                             ),
                           ),
                           Container(
-                            child: dynamicDefinition == null ? null : Text("$dynamicDefinition"),
+                            child: dynamicDefinitionMedical == null ? null : Text("$dynamicDefinitionMedical"),
                           )
 
                         ],
@@ -168,9 +172,9 @@ class _MyAppState extends State<MyApp> {
                                   icon: Icon(Icons.arrow_drop_down_circle),
                                   onPressed: () {
                                     setState(() {
-                                      open = !open;
-                                      if(open == true){
-                                        dynamicDefinition = "A rose is a woody "
+                                      openCosmetic = !openCosmetic;
+                                      if(openCosmetic == true){
+                                        dynamicDefinitionCosmetic = "A rose is a woody "
                                             "perennial flowering plant of the "
                                             "genus Rosa, in the family Rosaceae, "
                                             "or the flower it bears. ... They form "
@@ -178,7 +182,7 @@ class _MyAppState extends State<MyApp> {
                                             " shrubs, climbing, or trailing, with "
                                             "stems that are often armed with sharp prickles.";
                                       }else{
-                                        dynamicDefinition = null;
+                                        dynamicDefinitionCosmetic = null;
                                       }
 
                                     });
@@ -188,7 +192,7 @@ class _MyAppState extends State<MyApp> {
                             ),
                           ),
                           Container(
-                            child: dynamicDefinition == null ? null : Text("$dynamicDefinition"),
+                            child: dynamicDefinitionCosmetic == null ? null : Text("$dynamicDefinitionCosmetic"),
                           )
 
                         ],
