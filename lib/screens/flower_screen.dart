@@ -35,7 +35,7 @@ class _MyAppState extends State<MyApp> {
           ),
           actions: <Widget>[
             IconButton(
-              icon: Icon(Icons.notifications_active),
+              icon: Icon(Icons.notifications_active_outlined),
               onPressed: () {},
             ),
             IconButton(
@@ -54,17 +54,21 @@ class _MyAppState extends State<MyApp> {
                   width: 25,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
-                    color: Colors.red,
+                    image: DecorationImage(
+                      image:AssetImage("assets/tulip flower.png"),
+                    ),
+                    //color: Colors.white,
                   ),
                 ),
               ),
               Column(
                 children: [
                   Container(
-                    color: Colors.green,
-                    height: 50,
-                    width: 100,
-                    alignment: Alignment.center,
+                    child: Text("Tulip"),
+                    //color: Colors.green,
+                    //height: 50,
+                    //width: 100,
+                    //alignment: Alignment.center,
                     margin:EdgeInsets.only(left:10.0,top:10.0,right:10.0,bottom: 10.0),
                   ),
                 ],
@@ -91,6 +95,70 @@ class _MyAppState extends State<MyApp> {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text("Medical Uses",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.arrow_drop_down_circle),
+                                  onPressed: () {
+                                    setState(() {
+                                      open = !open;
+                                      if(open == true){
+                                        dynamicDefinition = "Tulip flowers are known to be an excellent poultice for insect "
+                                            "bites, bee stings, burns, and rashes on the skin, as it "
+                                            "gave quick relief with a soothing effect. Warm up 2-4 "
+                                            "flowers in hot water. Dip a towel in the hot water and drop "
+                                            "the petals of the flowers into the towel. Roll the towel to "
+                                            "crush the leaves. Apply the crushed petals to area where "
+                                            "there is skin rash, bee sting or insect bite to find quick "
+                                            "relief from the irritation. Hold the leaves on the place for "
+                                            "10 minutes using the hot towel.";
+
+                                      }else{
+                                        dynamicDefinition = null;
+                                      }
+
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: dynamicDefinition == null ? null : Text("$dynamicDefinition"),
+                          )
+
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+              ),
+              Container(
+                child: Container(
+                  margin:EdgeInsets.all(20.0),
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      border: Border.all(
+                        color: Colors.white,
+
+                      )
+
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Cosmetic Uses",
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -131,12 +199,11 @@ class _MyAppState extends State<MyApp> {
 
               ),
               Container(
-                height:110 ,
                 child: Container(
                   margin:EdgeInsets.all(20.0),
-                  padding: EdgeInsets.all(1.0),
+                  padding: EdgeInsets.only(left: 8, right: 8),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
                       border: Border.all(
                         color: Colors.white,
 
@@ -145,24 +212,47 @@ class _MyAppState extends State<MyApp> {
                   ),
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: DropdownButton(
-                          hint: Text("Cosmetic"),
-                          dropdownColor: Colors.grey,
-                          icon: Icon(Icons.arrow_drop_down_circle),
-                          isExpanded: true,
-                          value:valueChoose,
-                          onChanged: (newValue){
-                            setState(() {
-                              valueChoose = newValue;
-                            });
-                          },
-                          items: listItem.map((valueItem){
-                            return DropdownMenuItem(
-                              value:valueItem,
-                              child: Text(valueItem),
-                            );
-                          }).toList()
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Edibility",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.arrow_drop_down_circle),
+                                  onPressed: () {
+                                    setState(() {
+                                      open = !open;
+                                      if(open == true){
+                                        dynamicDefinition = "A rose is a woody "
+                                            "perennial flowering plant of the "
+                                            "genus Rosa, in the family Rosaceae, "
+                                            "or the flower it bears. ... They form "
+                                            "a group of plants that can be erect"
+                                            " shrubs, climbing, or trailing, with "
+                                            "stems that are often armed with sharp prickles.";
+                                      }else{
+                                        dynamicDefinition = null;
+                                      }
+
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: dynamicDefinition == null ? null : Text("$dynamicDefinition"),
+                          )
+
+                        ],
                       ),
                     ),
                   ),
@@ -170,12 +260,11 @@ class _MyAppState extends State<MyApp> {
 
               ),
               Container(
-                height:110 ,
                 child: Container(
                   margin:EdgeInsets.all(20.0),
-                  padding: EdgeInsets.all(1.0),
+                  padding: EdgeInsets.only(left: 8, right: 8),
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
                       border: Border.all(
                         color: Colors.white,
 
@@ -184,63 +273,47 @@ class _MyAppState extends State<MyApp> {
                   ),
                   child: Center(
                     child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: DropdownButton(
-                          hint: Text("Decarative"),
-                          dropdownColor: Colors.grey,
-                          icon: Icon(Icons.arrow_drop_down_circle),
-                          isExpanded: true,
-                          value:valueChoose,
-                          onChanged: (newValue){
-                            setState(() {
-                              valueChoose = newValue;
-                            });
-                          },
-                          items: listItem.map((valueItem){
-                            return DropdownMenuItem(
-                              value:valueItem,
-                              child: Text(valueItem),
-                            );
-                          }).toList()
-                      ),
-                    ),
-                  ),
-                ),
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Decarative Uses",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.arrow_drop_down_circle),
+                                  onPressed: () {
+                                    setState(() {
+                                      open = !open;
+                                      if(open == true){
+                                        dynamicDefinition = "A rose is a woody "
+                                            "perennial flowering plant of the "
+                                            "genus Rosa, in the family Rosaceae, "
+                                            "or the flower it bears. ... They form "
+                                            "a group of plants that can be erect"
+                                            " shrubs, climbing, or trailing, with "
+                                            "stems that are often armed with sharp prickles.";
+                                      }else{
+                                        dynamicDefinition = null;
+                                      }
 
-              ),
-              Container(
-                height:110,
-                child: Container(
-                  margin:EdgeInsets.all(20.0),
-                  padding: EdgeInsets.all(1.0),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(50)),
-                      border: Border.all(
-                        color: Colors.white,
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: dynamicDefinition == null ? null : Text("$dynamicDefinition"),
+                          )
 
-                      )
-
-                  ),
-                  child: Center(
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: DropdownButton(
-                          hint: Text("Edibility"),
-                          dropdownColor: Colors.grey,
-                          icon: Icon(Icons.arrow_drop_down_circle),
-                          isExpanded: true,
-                          value:valueChoose,
-                          onChanged: (newValue){
-                            setState(() {
-                              valueChoose = newValue;
-                            });
-                          },
-                          items: listItem.map((valueItem){
-                            return DropdownMenuItem(
-                              value:valueItem,
-                              child: Text(valueItem),
-                            );
-                          }).toList()
+                        ],
                       ),
                     ),
                   ),
