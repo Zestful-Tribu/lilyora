@@ -4,7 +4,6 @@ class HomeScreen extends StatelessWidget {
   static String id = "home_screen";
   @override
   Widget build(BuildContext context) {
-<<<<<<< HEAD
     return Scaffold(
       body: Center(
           child: Container(
@@ -17,9 +16,6 @@ class HomeScreen extends StatelessWidget {
           ),
       ),
     );
-=======
-    return HomePage();
->>>>>>> 98cef0a6882d1435272aef901f432f3a463992e1
   }
 }
 
@@ -39,9 +35,9 @@ class _HomePageState extends State<HomePage>{
         title: Text('Lilyora'
         ),
         actions: [
-          IconButton(icon: Icon(Icons.notifications_outlined),
+          IconButton(icon: Icon(Icons.notifications),
             onPressed: () => {},),
-          IconButton(icon: Icon(Icons.account_circle_outlined),
+          IconButton(icon: Icon(Icons.account_circle),
             onPressed: () => {},),
         ],
         leading: Icon(Icons.menu),
