@@ -25,9 +25,7 @@ class _HomePageState extends State<HomePage>{
         color: Colors.grey,
         child: Padding(padding: EdgeInsets.only(top: 100.0),),
         margin: EdgeInsets.all(15.0),
-
       ),
-
     );
     throw UnimplementedError();
   }
