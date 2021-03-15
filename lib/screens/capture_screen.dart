@@ -20,9 +20,9 @@ class _CaptureScreenState extends State<CaptureScreen> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    setState(() {
-      getImage();
-    });
+    // setState(() {
+    //   captureImage();
+    // });
   }
   @override
   Widget build(BuildContext context) {
@@ -50,23 +50,78 @@ class _CaptureScreenState extends State<CaptureScreen> {
             child: Column(
               children: [
                 Container(
-                  height: 500,
+                  margin: EdgeInsets.all(20),
+                  alignment: Alignment.center,
+                  height: 400,
                   width: 300,
                   child: image == null ? Text("Image is not loaded") : Image.file(image),
+                  decoration: BoxDecoration(
+                    color: Colors.grey,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                 ),
-                RaisedButton(
-                  padding: EdgeInsets.all(20),
-                  onPressed: (){
-                    Navigator.pushNamed(context, FlowerScreen.id);
-                  },
-                  textColor: Colors.white,
-                  color: Colors.purple,
-                  elevation: 4.0,
-                  child: Text(
-                    "SCAN",
-                    style: TextStyle(
-                      fontSize: 20,
-                    ),
+                Container(
+                  margin: EdgeInsets.all(20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      RaisedButton(
+                        padding: EdgeInsets.all(20),
+                        onPressed: (){
+                          Navigator.pushNamed(context, FlowerScreen.id);
+                        },
+                        textColor: Colors.white,
+                        color: Colors.purple,
+                        elevation: 4.0,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.photo_library
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "GALLERY",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ],
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                      RaisedButton(
+                        padding: EdgeInsets.all(20),
+                        onPressed: (){
+                          Navigator.pushNamed(context, FlowerScreen.id);
+                        },
+                        textColor: Colors.white,
+                        color: Colors.purple,
+                        elevation: 4.0,
+                        child:  Row(
+                          children: [
+                            Icon(
+                                Icons.camera
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            Text(
+                              "CAPTURE",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                          ],
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ],
@@ -76,7 +131,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
     );
   }
 
-  Future getImage() async {
+  Future captureImage() async {
     final pickedImage = await picker.getImage(source: ImageSource.camera);
 
     setState(() {
