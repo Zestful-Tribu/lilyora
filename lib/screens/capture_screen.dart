@@ -16,6 +16,8 @@ class _CaptureScreenState extends State<CaptureScreen> {
   File image;
   final picker = ImagePicker();
 
+  PickedFile pickedGalleyImage;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -68,11 +70,13 @@ class _CaptureScreenState extends State<CaptureScreen> {
                       RaisedButton(
                         padding: EdgeInsets.all(20),
                         onPressed: (){
-                          Navigator.pushNamed(context, FlowerScreen.id);
+                          setState(() {
+                            galleryImage();
+                          });
                         },
                         textColor: Colors.white,
                         color: Colors.purple,
-                        elevation: 4.0,
+                        elevation: 25.0,
                         child: Row(
                           children: [
                             Icon(
@@ -96,11 +100,13 @@ class _CaptureScreenState extends State<CaptureScreen> {
                       RaisedButton(
                         padding: EdgeInsets.all(20),
                         onPressed: (){
-                          Navigator.pushNamed(context, FlowerScreen.id);
+                          setState(() {
+                            captureImage();
+                          });
                         },
                         textColor: Colors.white,
                         color: Colors.purple,
-                        elevation: 4.0,
+                        elevation: 25.0,
                         child:  Row(
                           children: [
                             Icon(
@@ -124,6 +130,37 @@ class _CaptureScreenState extends State<CaptureScreen> {
                     ],
                   ),
                 ),
+                Container(
+                  width: 200,
+                  child: RaisedButton(
+                    padding: EdgeInsets.all(20),
+                    onPressed: (){
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FlowerScreen(pickedGalleryImage: pickedGalleyImage,)
+                        )
+                      );
+                    },
+                    textColor: Colors.white,
+                    color: Colors.purple,
+                    elevation: 25.0,
+                    child:  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "IDENTIFY",
+                          style: TextStyle(
+                            fontSize: 20,
+                          ),
+                        ),
+                      ],
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                  ),
+                )
               ],
             ),
           ),
@@ -137,6 +174,18 @@ class _CaptureScreenState extends State<CaptureScreen> {
     setState(() {
       if(pickedImage != null) {
         image = File(pickedImage.path);
+      } else {
+        print("no image is captured");
+      }
+    });
+  }
+
+  Future galleryImage() async {
+    pickedGalleyImage = await picker.getImage(source: ImageSource.gallery);
+
+    setState(() {
+      if(pickedGalleyImage != null) {
+        image = File(pickedGalleyImage.path);
       } else {
         print("no image is selected");
       }

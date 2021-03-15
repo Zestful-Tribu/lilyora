@@ -1,21 +1,25 @@
+
+
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class FlowerScreen extends StatelessWidget {
+class FlowerScreen extends StatefulWidget {
   static String id = "flower_screen";
+
+  PickedFile pickedGalleryImage;
+  PickedFile pickedCaptureImage;
+  FlowerScreen({this.pickedGalleryImage});
+
   @override
-  Widget build(BuildContext context) {
-    return MyApp();
-  }
+  _FlowerScreenState createState() => _FlowerScreenState();
+
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
+class _FlowerScreenState extends State<FlowerScreen> {
 
-}
-
-class _MyAppState extends State<MyApp> {
-
+  File image;
   String valueChoose;
   List listItem = [
     "Item1","Item2","Item3","Item4",
@@ -26,6 +30,32 @@ class _MyAppState extends State<MyApp> {
   bool openMedical = false;
   bool openCosmetic = false;
   bool open = false;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    galleyImage();
+  }
+
+  Future galleyImage() async {
+    setState(() {
+      if(widget.pickedGalleryImage != null) {
+        image = File(widget.pickedGalleryImage.path);
+      } else {
+        print("no image is selected");
+      }
+    });
+  }
+
+  uploadImage(File file) async {
+    String imgFileName = file.path.split('/').last;
+    // FormData formData = FormData.fromMap({
+    //   'image',
+    //   await
+    // })
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -59,7 +89,8 @@ class _MyAppState extends State<MyApp> {
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image:AssetImage("assets/tulip flower.png"),
+                      image:image != null ? FileImage(image) : AssetImage("assets/flower.png"),
+                      fit: BoxFit.cover,
                     ),
                     //color: Colors.white,
                   ),
@@ -68,7 +99,12 @@ class _MyAppState extends State<MyApp> {
               Column(
                 children: [
                   Container(
-                    child: Text("Tulip"),
+                    child: Text(
+                        "Tulip",
+                      style: TextStyle(
+                        fontSize: 20.0,
+                      ),
+                    ),
                     //color: Colors.green,
                     //height: 50,
                     //width: 100,
