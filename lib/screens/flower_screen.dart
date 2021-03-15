@@ -2,6 +2,7 @@
 
 import 'dart:io';
 
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
@@ -31,10 +32,15 @@ class _FlowerScreenState extends State<FlowerScreen> {
   bool openCosmetic = false;
   bool open = false;
 
+  String result = "flower";
+
   @override
   void initState() {
     // TODO: implement initState
     galleyImage();
+    setState(() {
+      uploadImage(image);
+    });
   }
 
   Future galleyImage() async {
@@ -49,10 +55,22 @@ class _FlowerScreenState extends State<FlowerScreen> {
 
   uploadImage(File file) async {
     String imgFileName = file.path.split('/').last;
-    // FormData formData = FormData.fromMap({
-    //   'image',
-    //   await
-    // })
+    FormData formData = FormData.fromMap({
+      'image':
+      await MultipartFile.fromFile(file.path, filename: imgFileName),
+    });
+
+    Dio dio = new Dio();
+    await dio
+      .post("http://10.0.2.2:5000/predict", data: formData)
+      .then((response){
+        print(response);
+        setState(() {
+          result = response.data;
+        });
+        print(result);
+    })
+    .catchError((error) => print(error));
   }
 
 
@@ -100,7 +118,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                 children: [
                   Container(
                     child: Text(
-                        "Tulip",
+                        result,
                       style: TextStyle(
                         fontSize: 20.0,
                       ),
