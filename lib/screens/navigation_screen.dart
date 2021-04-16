@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lilyora/components/drawer.dart';
 import 'package:lilyora/screens/capture_screen.dart';
 import 'package:lilyora/screens/search_screen.dart';
 
@@ -21,6 +22,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: LilyoraDrawer(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepPurple,
@@ -79,3 +81,5 @@ class _NavigationScreenState extends State<NavigationScreen> {
     });
   }
 }
+
+
