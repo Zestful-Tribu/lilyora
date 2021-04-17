@@ -20,6 +20,10 @@ class LilyoraDrawer extends StatelessWidget {
                   Container(
                     width: 100,
                     height: 100,
+                    margin: EdgeInsets.only(
+                      top: 30,
+                      bottom: 20,
+                    ),
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
@@ -29,11 +33,23 @@ class LilyoraDrawer extends StatelessWidget {
                           fit: BoxFit.fill
                       ),
                     ),
-                  )
+                  ),
+                  Text('Dani Daniels', style: TextStyle(fontSize: 22, color: Colors.white),),
                 ],
               ),
             ),
-          )
+          ),
+          ListTile(
+            leading: Icon(Icons.person),
+            title: Text("Profile", style: TextStyle(fontSize: 18),),
+            onTap: null,
+          ),
+
+          ListTile(
+            leading: Icon(Icons.camera),
+            title: Text("Capture", style: TextStyle(fontSize: 18),),
+            onTap: null,
+          ),
         ],
       ),
 
