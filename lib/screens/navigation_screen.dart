@@ -22,7 +22,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: LilyoraDrawer(),
+
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.deepPurple,
@@ -56,10 +56,6 @@ class _NavigationScreenState extends State<NavigationScreen> {
       appBar:  AppBar(
         title: Text("Lilyora"),
         backgroundColor: Colors.deepPurple,
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {},
-        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.notifications_active),
@@ -72,6 +68,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
         ],
       ),
       body: _children[_currentIndex],
+      drawer: LilyoraDrawer(),
     );
   }
 

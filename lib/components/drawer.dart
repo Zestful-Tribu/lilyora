@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:lilyora/screens/capture_screen.dart';
+import 'package:lilyora/screens/navigation_screen.dart';
+import 'package:lilyora/screens/profile_screen.dart';
 
 class LilyoraDrawer extends StatelessWidget {
   const LilyoraDrawer({
@@ -42,13 +45,28 @@ class LilyoraDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.person),
             title: Text("Profile", style: TextStyle(fontSize: 18),),
-            onTap: null,
+            onTap: (){
+              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, ProfileScreen.id);
+            },
           ),
 
           ListTile(
             leading: Icon(Icons.camera),
             title: Text("Capture", style: TextStyle(fontSize: 18),),
-            onTap: null,
+            onTap: (){
+              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, CaptureScreen.id);
+            },
+          ),
+
+          ListTile(
+            leading: Icon(Icons.home),
+            title: Text("Home", style: TextStyle(fontSize: 18),),
+            onTap: (){
+              Navigator.pop(context);
+              Navigator.pushReplacementNamed(context, NavigationScreen.id);
+            },
           ),
         ],
       ),
