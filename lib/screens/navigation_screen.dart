@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lilyora/components/appbar.dart';
 import 'package:lilyora/components/drawer.dart';
 import 'package:lilyora/constants.dart';
 import 'package:lilyora/screens/capture_screen.dart';
@@ -58,24 +59,13 @@ class _NavigationScreenState extends State<NavigationScreen> {
         ],
       ),
 
-      appBar:  AppBar(
-        title: Text("Lilyora"),
-        backgroundColor: Primary_Color2,
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.notifications_active),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.account_circle),
-            onPressed: () {},
-          ),
-        ],
-      ),
+      appBar:  lilyora_App_Bar(),
       body: _children[_currentIndex],
       drawer: LilyoraDrawer(),
     );
   }
+
+
 
   void onTabTapped(int index) {
     setState(() {
