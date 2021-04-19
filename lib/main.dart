@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.deepPurpleAccent,
 
       ),
-      home: NavigationScreen(),
+      home: GettingStarted(),
       routes: {
         NavigationScreen.id: (context) => NavigationScreen(),
         IntroScreen.id: (context) => IntroScreen(),
