@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lilyora/constants.dart';
 import 'package:lilyora/screens/capture_screen.dart';
 import 'package:lilyora/screens/navigation_screen.dart';
 import 'package:lilyora/screens/profile_screen.dart';
@@ -16,7 +17,7 @@ class LilyoraDrawer extends StatelessWidget {
           Container(
             width: double.infinity,
             padding: EdgeInsets.all(20),
-            color: Theme.of(context).primaryColor,
+            color: Primary_Color2,
             child: Center(
               child: Column(
                 children: <Widget>[
