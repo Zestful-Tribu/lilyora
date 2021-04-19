@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:lilyora/constants.dart';
+import 'package:lilyora/screens/navigation_screen.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -14,14 +15,14 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
- // @override
-  //void initState() {
-  //  super.initState();
+  @override
+  void initState() {
+    super.initState();
 
 
-  //  Timer(Duration(seconds: 3), ()=>)
+    Timer(Duration(seconds: 6), ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>NavigationScreen())));
 
- // }
+  }
 
 
   @override
@@ -31,10 +32,20 @@ class _SplashScreenState extends State<SplashScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
-          Image.asset('assets/logo.png', height: 100.0,),
+          Container(
+            margin: const EdgeInsets.only(bottom: 30.0),
+            child: Image.asset('assets/logo.png',
+              height: 200.0,
+            ),
+          ),
+          Container(
+            margin: const EdgeInsets.only(bottom: 100.0),
+            child: Text("Lilyora", style: TextStyle(color: Colors.black, fontSize: 50.0),),
+
+          ),
           SizedBox(height: 30.0),
 
-          SpinKitFadingCube(color: Primary_Color2,)
+          SpinKitWave(color: Primary_Color2,)
         ],
       ),
 
