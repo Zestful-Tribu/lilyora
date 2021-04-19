@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lilyora/components/appbar.dart';
 import 'package:lilyora/components/drawer.dart';
+import 'package:lilyora/constants.dart';
 import 'package:lilyora/screens/flower_screen.dart';
 
 
@@ -61,7 +62,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
                           });
                         },
                         textColor: Colors.white,
-                        color: Colors.purple,
+                        color: Primary_Color,
                         elevation: 25.0,
                         child: Row(
                           children: [
@@ -91,7 +92,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
                           });
                         },
                         textColor: Colors.white,
-                        color: Colors.purple,
+                        color: Primary_Color,
                         elevation: 25.0,
                         child:  Row(
                           children: [
@@ -117,7 +118,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
                   ),
                 ),
                 Container(
-                  width: 200,
+                  width: 330,
                   child: RaisedButton(
                     padding: EdgeInsets.all(20),
                     onPressed: (){
@@ -129,7 +130,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
                       );
                     },
                     textColor: Colors.white,
-                    color: Colors.purple,
+                    color: Primary_Color,
                     elevation: 25.0,
                     child:  Row(
                       mainAxisAlignment: MainAxisAlignment.center,
