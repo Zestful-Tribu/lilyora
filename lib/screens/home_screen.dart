@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lilyora/components/drawer.dart';
 import 'package:lilyora/components/scrolling_small_flowers_horizontal.dart';
+import 'package:lilyora/constants.dart';
 import 'package:lilyora/screens/search_screen.dart';
 
 import 'capture_screen.dart';
@@ -110,7 +111,7 @@ class _HomePageState extends State<HomePage>{
 
                                   border: Border(
                                     bottom: BorderSide(
-                                      color: Color(0xFF56C596),
+                                      color: Primary_Color,
                                       width: 2,
                                     ),
                                   ),

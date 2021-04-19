@@ -40,13 +40,16 @@ class _NavigationScreenState extends State<NavigationScreen> {
       ),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Primary_Color2,
-        selectedItemColor: Colors.white,
+
         onTap: onTabTapped,
         currentIndex: _currentIndex,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text("Home"),
+            icon: Icon(Icons.home,
+              color: Colors.white,),
+            title: Text("Home",
+              style: TextStyle(color: Colors.white),
+            ),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search,
@@ -59,7 +62,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
         ],
       ),
 
-      appBar:  lilyora_App_Bar(),
+      appBar:  lilyora_App_Bar(context),
       body: _children[_currentIndex],
       drawer: LilyoraDrawer(),
     );
