@@ -33,7 +33,7 @@ class _HomePageState extends State<HomePage>{
             Container(
               padding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
               child: Text(
-                "Popular flowers  ----------------------------",
+                "Popular flowers   ---------------------------",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -60,7 +60,7 @@ class _HomePageState extends State<HomePage>{
             Container(
               padding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
               child: Text(
-                "Flower of the day",
+                "Flower of the day   -------------------------",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
@@ -156,9 +156,9 @@ class _HomePageState extends State<HomePage>{
             ),
 
             Container(
-              padding: EdgeInsets.only(top: 10, bottom: 10),
+              padding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
               child: Text(
-                "Recently searched",
+                "Recently searched  -------------------------",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
