@@ -7,6 +7,7 @@ import 'package:lilyora/screens/intro_screen.dart';
 import 'package:lilyora/screens/navigation_screen.dart';
 import 'package:lilyora/screens/profile_screen.dart';
 import 'package:lilyora/screens/search_screen.dart';
+import 'package:lilyora/screens/test_screen.dart';
 
 void main() {
   runApp(MyApp());
