@@ -7,6 +7,7 @@ import 'package:lilyora/screens/intro_screen.dart';
 import 'package:lilyora/screens/navigation_screen.dart';
 import 'package:lilyora/screens/profile_screen.dart';
 import 'package:lilyora/screens/search_screen.dart';
+import 'package:lilyora/screens/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.deepPurpleAccent,
 
       ),
-      home: NavigationScreen(),
+      home: SplashScreen(),
       routes: {
         NavigationScreen.id: (context) => NavigationScreen(),
         IntroScreen.id: (context) => IntroScreen(),
