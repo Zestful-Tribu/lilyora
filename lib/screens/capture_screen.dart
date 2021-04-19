@@ -32,7 +32,7 @@ class _CaptureScreenState extends State<CaptureScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: LilyoraDrawer(),
-      appBar:  lilyora_App_Bar(),
+      appBar:  lilyora_App_Bar(context),
       body: SafeArea(
           child: Center(
             child: Column(
