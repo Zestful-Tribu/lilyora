@@ -26,7 +26,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Primary_Color2,
+        backgroundColor: Primary_Color,
         onPressed: () {
           Navigator.pushNamed(context, CaptureScreen.id);
         },
@@ -38,7 +38,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Primary_Color,
+        backgroundColor: Primary_Color2,
         selectedItemColor: Colors.white,
         onTap: onTabTapped,
         currentIndex: _currentIndex,
@@ -60,7 +60,7 @@ class _NavigationScreenState extends State<NavigationScreen> {
 
       appBar:  AppBar(
         title: Text("Lilyora"),
-        backgroundColor: Primary_Color,
+        backgroundColor: Primary_Color2,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.notifications_active),
