@@ -28,8 +28,9 @@ class FlowerCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
                       image: AssetImage(
-                          "assets/flower.png"
+                          "assets/roseflower.jpg"
                       ),
+                        fit: BoxFit.fill,
                     ),
                   ),
                 ),

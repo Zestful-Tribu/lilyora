@@ -1,8 +1,11 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:lilyora/screens/profile_screen.dart';
 
 import '../constants.dart';
 
-AppBar lilyora_App_Bar() {
+AppBar lilyora_App_Bar(BuildContext context) {
   return AppBar(
     title: Text("Lilyora"),
     backgroundColor: Primary_Color2,
@@ -13,7 +16,9 @@ AppBar lilyora_App_Bar() {
       ),
       IconButton(
         icon: Icon(Icons.account_circle),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacementNamed(context, ProfileScreen.id);
+        },
       ),
     ],
   );
