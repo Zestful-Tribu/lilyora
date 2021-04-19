@@ -21,6 +21,8 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
+  sticky_headers: "^0.1.8"
+  flappy_search_bar: 1.4.1
   image_picker: ^0.6.7+22
   http: ^0.12.2
   dio: ^3.0.10

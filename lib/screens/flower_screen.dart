@@ -5,6 +5,9 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lilyora/components/appbar.dart';
+import 'package:lilyora/components/drawer.dart';
+import 'package:lilyora/constants.dart';
 
 class FlowerScreen extends StatefulWidget {
   static String id = "flower_screen";
@@ -28,11 +31,13 @@ class _FlowerScreenState extends State<FlowerScreen> {
   String dynamicDefinitionMedical;
   String dynamicDefinitionCosmetic;
   String dynamicDefinition;
+  String dynamicDefinition1;
   bool openMedical = false;
   bool openCosmetic = false;
   bool open = false;
+  bool open1 = false;
 
-  String result = "flower";
+  String result = "Flower";
 
   @override
   void initState() {
@@ -78,24 +83,8 @@ class _FlowerScreenState extends State<FlowerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-        appBar: AppBar(
-          title: Text("Lilyora"),
-          backgroundColor: Colors.deepPurple,
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            onPressed: () {},
-          ),
-          actions: <Widget>[
-            IconButton(
-              icon: Icon(Icons.notifications_active),
-              onPressed: () {},
-            ),
-            IconButton(
-              icon: Icon(Icons.account_circle),
-              onPressed: () {},
-            ),
-          ],
-        ),
+        drawer: LilyoraDrawer(),
+        appBar: lilyora_App_Bar(context),
         body: SafeArea(
           child: ListView(
             children: [
@@ -106,9 +95,11 @@ class _FlowerScreenState extends State<FlowerScreen> {
                   width: 25,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
+                    shape: BoxShape.circle,
                     image: DecorationImage(
-                      image:image != null ? FileImage(image) : AssetImage("assets/flower.png"),
-                      fit: BoxFit.cover,
+
+                      image:image != null ? FileImage(image) : AssetImage("assets/roseflower.jpg"),
+                      fit: BoxFit.fill,
                     ),
                     //color: Colors.white,
                   ),
@@ -138,7 +129,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(30)),
                       border: Border.all(
-                        color: Colors.white,
+                        color: Primary_Color,
 
                       )
 
@@ -202,7 +193,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(30)),
                       border: Border.all(
-                        color: Colors.white,
+                        color: Primary_Color,
 
                       )
 
@@ -263,7 +254,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(30)),
                       border: Border.all(
-                        color: Colors.white,
+                        color: Primary_Color,
 
                       )
 
@@ -324,7 +315,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(30)),
                       border: Border.all(
-                        color: Colors.white,
+                        color: Primary_Color,
 
                       )
 
@@ -348,9 +339,9 @@ class _FlowerScreenState extends State<FlowerScreen> {
                                   icon: Icon(Icons.arrow_drop_down_circle),
                                   onPressed: () {
                                     setState(() {
-                                      open = !open;
-                                      if(open == true){
-                                        dynamicDefinition = "A rose is a woody "
+                                      open1 = !open1;
+                                      if(open1 == true){
+                                        dynamicDefinition1 = "A rose is a woody "
                                             "perennial flowering plant of the "
                                             "genus Rosa, in the family Rosaceae, "
                                             "or the flower it bears. ... They form "
@@ -358,7 +349,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                                             " shrubs, climbing, or trailing, with "
                                             "stems that are often armed with sharp prickles.";
                                       }else{
-                                        dynamicDefinition = null;
+                                        dynamicDefinition1 = null;
                                       }
 
                                     });
@@ -368,7 +359,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                             ),
                           ),
                           Container(
-                            child: dynamicDefinition == null ? null : Text("$dynamicDefinition"),
+                            child: dynamicDefinition1 == null ? null : Text("$dynamicDefinition1"),
                           )
 
                         ],

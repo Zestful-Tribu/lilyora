@@ -2,6 +2,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:lilyora/components/appbar.dart';
+import 'package:lilyora/components/drawer.dart';
 import 'package:lilyora/screens/flower_screen.dart';
 
 
@@ -29,24 +31,8 @@ class _CaptureScreenState extends State<CaptureScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:  AppBar(
-        title: Text("Lilyora"),
-        backgroundColor: Colors.deepPurple,
-        leading: IconButton(
-          icon: Icon(Icons.menu),
-          onPressed: () {},
-        ),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(Icons.notifications_active),
-            onPressed: () {},
-          ),
-          IconButton(
-            icon: Icon(Icons.account_circle),
-            onPressed: () {},
-          ),
-        ],
-      ),
+      drawer: LilyoraDrawer(),
+      appBar:  lilyora_App_Bar(context),
       body: SafeArea(
           child: Center(
             child: Column(

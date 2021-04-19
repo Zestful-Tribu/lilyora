@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class smallFlowerImg extends StatelessWidget {
+
   const smallFlowerImg({
     Key key,
   }) : super(key: key);
@@ -8,6 +9,7 @@ class smallFlowerImg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.only(left: 15.0),
       height: 70,
       width: 70,
       decoration: BoxDecoration(
@@ -15,7 +17,7 @@ class smallFlowerImg extends StatelessWidget {
           shape: BoxShape.circle,
           image: DecorationImage(
             image: AssetImage(
-                "assets/tulip flower.png"
+                "assets/roseflower.jpg"
             ),
             fit: BoxFit.fill,
           )
