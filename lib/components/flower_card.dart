@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lilyora/constants.dart';
 
 class FlowerCard extends StatelessWidget {
   const FlowerCard({
@@ -15,7 +16,7 @@ class FlowerCard extends StatelessWidget {
             padding: EdgeInsets.all(10),
             height: 120,
             decoration: BoxDecoration(
-              color: Colors.redAccent,
+              color: Primary_Color,
               borderRadius: BorderRadius.circular(20),
             ),
             child: Row(
@@ -24,7 +25,6 @@ class FlowerCard extends StatelessWidget {
                   height: 100,
                   width: 100,
                   decoration: BoxDecoration(
-                    color: Colors.green,
                     borderRadius: BorderRadius.circular(20),
                     image: DecorationImage(
                       image: AssetImage(
@@ -52,12 +52,7 @@ class FlowerCard extends StatelessWidget {
                           ),
                           decoration: BoxDecoration(
 
-                            border: Border(
-                              bottom: BorderSide(
-                                color: Colors.black,
-                                width: 2,
-                              ),
-                            ),
+
                           ),
                         ),
                         Container(

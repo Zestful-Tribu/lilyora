@@ -37,8 +37,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       drawer: LilyoraDrawer(),
       appBar: lilyora_App_Bar(context),
       bottomNavigationBar: BottomAppBar(
+        color: Primary_Color2,
         child: IconTheme(
-          data: IconThemeData(color: Primary_Color2),
+          data: IconThemeData(color: Colors.white),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
@@ -68,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               header: Container(
                 height: 150,
                 decoration: BoxDecoration(
-                  color: Colors.tealAccent,
+                  color: Primary_Color,
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withOpacity(0.5),
@@ -87,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       width: 100,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
-                        color: Colors.tealAccent,
+                        color: Primary_Color,
                         image: DecorationImage(
                           image: AssetImage("assets/name.jpg"),
                         ),
@@ -99,6 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         "danidaniels@gmail.com",
                         style: TextStyle(
                           fontSize: 18,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
