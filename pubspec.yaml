@@ -23,6 +23,7 @@ environment:
 dependencies:
 
   flutter_svg: ^0.21.0+1
+  introduction_screen: ^2.1.0
   sticky_headers: "^0.1.8"
   flappy_search_bar: 1.4.1
   image_picker: ^0.7.4

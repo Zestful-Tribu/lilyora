@@ -24,6 +24,7 @@ class MyApp extends StatelessWidget {
 
       ),
       home: SplashScreen(),
+      home: GettingStarted(),
       routes: {
         NavigationScreen.id: (context) => NavigationScreen(),
         IntroScreen.id: (context) => IntroScreen(),

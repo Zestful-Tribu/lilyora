@@ -64,6 +64,14 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.0.0"
+    version: "3.0.10"
+  dots_indicator:
+    dependency: transitive
+    description:
+      name: dots_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   fake_async:
     dependency: transitive
     description:
@@ -184,6 +192,14 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.6.3"
+    version: "1.1.6"
+  introduction_screen:
+    dependency: "direct main"
+    description:
+      name: introduction_screen
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   matcher:
     dependency: transitive
     description:
@@ -381,3 +397,6 @@ packages:
 sdks:
   dart: ">=2.12.0 <3.0.0"
   flutter: ">=2.0.0"
+sdks:
+  dart: ">=2.12.0 <3.0.0"
+  flutter: ">=1.17.0"
