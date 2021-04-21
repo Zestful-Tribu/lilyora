@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lilyora/components/drawer.dart';
 import 'package:lilyora/components/scrolling_small_flowers_horizontal.dart';
 import 'package:lilyora/constants.dart';
@@ -31,19 +32,22 @@ class _HomePageState extends State<HomePage>{
             Container(
               //test commit
             ),
+
+
             Container(
-              padding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
+              margin: EdgeInsets.only(top: 20),
+              padding: EdgeInsets.only(left: 10),
               child: Text(
-                "Popular flowers   ---------------------------",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
+                "Popular Flowers",
+                style:GoogleFonts.poppins(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
+
+
+
             Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0),
-              height: 70.0,
+              margin: EdgeInsets.only(bottom: 10.0),
+              height: 120.0,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
@@ -54,43 +58,61 @@ class _HomePageState extends State<HomePage>{
                   smallFlowerImg(),
                   smallFlowerImg(),
                   smallFlowerImg(),
-                  smallFlowerImg(),
                 ],
               ),
             ),
+
+
+
             Container(
-              padding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
+              margin: EdgeInsets.only(top:10,bottom: 10.0),
+              padding: EdgeInsets.only(bottom:10,left: 10),
               child: Text(
-                "Flower of the day   -------------------------",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
+                "Flower of The Day",
+                style:GoogleFonts.poppins(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ),
+
+
 
             Container(
               padding: EdgeInsets.all(30),
               margin: const EdgeInsets.only(left: 10.0, right: 10.0),
               decoration: BoxDecoration(
-                color: Color(0xFF56C596),
-                borderRadius: BorderRadius.circular(20),
-              ),
+                  boxShadow: [
+                  BoxShadow(
+                  offset: Offset(1.0,1.0),
+                  blurRadius: 10.0,
+
+
+                  //borderRadius: BorderRadius.circular(0),
+            ),
+
+              ],
+                  color: Color(0xFF56C596),),
+
               child: Column(
                 children: [
                   Row(
                     children: [
                       Container(
-                        height: 100,
-                        width: 100,
+                        height: 110,
+                        width: 110,
                         decoration: BoxDecoration(
-                          color: Colors.tealAccent,
+                         boxShadow: [
+                           BoxShadow(
+                            offset: Offset(3.0,3.0),
+                              blurRadius: 5.0,
+                           )
+                          ],
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(20),
                             image: DecorationImage(
                               image: AssetImage(
                                   "assets/roseflower.jpg"
                               ),
                               fit: BoxFit.fill,
+
                             )
                         ),
                       ),
@@ -124,6 +146,7 @@ class _HomePageState extends State<HomePage>{
                                     style: TextStyle(
                                       color: Colors.black,
                                       fontSize: 20,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
@@ -133,7 +156,9 @@ class _HomePageState extends State<HomePage>{
                                 child: Text(
                                     "Genus: Rosa L\n" +
                                         "Family: Rosaceae\n"+
-                                        "Kindgdom: Platae"
+                                        "Kindgdom: Platae",
+                                  style: TextStyle(fontWeight: FontWeight.bold,),
+
                                 ),
                               )
                             ],
@@ -143,37 +168,40 @@ class _HomePageState extends State<HomePage>{
                     ],
                   ),
                   Container(
+
                     padding: EdgeInsets.only(top: 20),
                     child: Text(
                         "A rose is awoody perennial asdfa aiosdfhosdhf dahsdfoauh sdfoahda dfoh"
                             "asdfha isdufhao dfadfojaosdfhao dadfaidfh "
                             "adfhaodfiaoid asdf aisdfha;o as"
                             "aa oisdfhaosh a;s dfhsodhfo sdfpa sdfp"
-                            "aoisdf aidf"
+                            "aoisdf aidf",
+                      style: TextStyle(fontWeight: FontWeight.bold)
+                      ,
                     ),
                   ),
                 ],
               ),
             ),
 
+
+
             Container(
-              padding: EdgeInsets.only(top: 10, bottom: 10, left: 10),
+              padding: EdgeInsets.only(top:20,left: 10),
               child: Text(
-                "Recently searched  -------------------------",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                ),
+                "Recently Searched",
+                style:GoogleFonts.poppins(fontSize: 20, color: Colors.black,fontWeight: FontWeight.bold),
               ),
             ),
 
+
+
             Container(
-              margin: EdgeInsets.symmetric(vertical: 20.0),
-              height: 70.0,
+              margin: EdgeInsets.only(bottom: 10.0),
+              height: 120.0,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 children: [
-                  smallFlowerImg(),
                   smallFlowerImg(),
                   smallFlowerImg(),
                   smallFlowerImg(),

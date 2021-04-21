@@ -82,7 +82,15 @@ class _FlowerScreenState extends State<FlowerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // Add your onPressed code here!
 
+          },
+          label: const Text('Add to favourites'),
+          icon: const Icon(Icons.favorite),
+          backgroundColor: Primary_Color2,
+        ),
         drawer: LilyoraDrawer(),
         appBar: lilyora_App_Bar(context),
         body: SafeArea(
