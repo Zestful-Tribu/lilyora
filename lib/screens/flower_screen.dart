@@ -3,6 +3,7 @@
 import 'dart:io';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lilyora/components/appbar.dart';
@@ -37,7 +38,8 @@ class _FlowerScreenState extends State<FlowerScreen> {
   bool open = false;
   bool open1 = false;
 
-  String result = "Flower";
+  String result = "anthurium";
+
 
   @override
   void initState() {
@@ -45,8 +47,11 @@ class _FlowerScreenState extends State<FlowerScreen> {
     galleyImage();
     setState(() {
       uploadImage(image);
+      loadFirebaseStorage();
     });
   }
+
+
 
   Future galleyImage() async {
     setState(() {
@@ -65,9 +70,10 @@ class _FlowerScreenState extends State<FlowerScreen> {
       await MultipartFile.fromFile(file.path, filename: imgFileName),
     });
 
+    // local url -> http://10.0.2.2:5000/predict
     Dio dio = new Dio();
     await dio
-      .post("http://10.0.2.2:5000/predict", data: formData)
+      .post("https://zestfultribulilyora.el.r.appspot.com/predict", data: formData)
       .then((response){
         print(response);
         setState(() {
@@ -78,9 +84,25 @@ class _FlowerScreenState extends State<FlowerScreen> {
     .catchError((error) => print(error));
   }
 
+  Map<String, String> lists = new Map();
+
+  void loadFirebaseStorage() {
+    final dbRefs = FirebaseDatabase.instance.reference().child(result.toLowerCase());
+    dbRefs.once().then((DataSnapshot snapshot) {
+      if(snapshot.value != null){
+        print('Data : ${snapshot.value}');
+        Map<dynamic, dynamic> values = snapshot.value;
+        values.forEach((key, values) {
+          lists[key] = values;
+        });
+      }
+    });
+  }
+
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
 
         drawer: LilyoraDrawer(),
@@ -155,15 +177,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                                     setState(() {
                                       openMedical = !openMedical;
                                       if(openMedical == true){
-                                        dynamicDefinitionMedical = "Tulip flowers are known to be an excellent poultice for insect "
-                                            "bites, bee stings, burns, and rashes on the skin, as it "
-                                            "gave quick relief with a soothing effect. Warm up 2-4 "
-                                            "flowers in hot water. Dip a towel in the hot water and drop "
-                                            "the petals of the flowers into the towel. Roll the towel to "
-                                            "crush the leaves. Apply the crushed petals to area where "
-                                            "there is skin rash, bee sting or insect bite to find quick "
-                                            "relief from the irritation. Hold the leaves on the place for "
-                                            "10 minutes using the hot towel.";
+                                        dynamicDefinitionMedical = lists["medical"];
 
                                       }else{
                                         dynamicDefinitionMedical = null;
@@ -219,13 +233,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                                     setState(() {
                                       openCosmetic = !openCosmetic;
                                       if(openCosmetic == true){
-                                        dynamicDefinitionCosmetic = "A rose is a woody "
-                                            "perennial flowering plant of the "
-                                            "genus Rosa, in the family Rosaceae, "
-                                            "or the flower it bears. ... They form "
-                                            "a group of plants that can be erect"
-                                            " shrubs, climbing, or trailing, with "
-                                            "stems that are often armed with sharp prickles.";
+                                        dynamicDefinitionCosmetic = lists["cosmetic"];
                                       }else{
                                         dynamicDefinitionCosmetic = null;
                                       }

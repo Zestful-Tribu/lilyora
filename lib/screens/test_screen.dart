@@ -9,11 +9,14 @@ class TestPage extends StatefulWidget {
 
 class _TestPageState extends State<TestPage> {
   final dbRef = FirebaseDatabase.instance.reference().child("anthurium");
+  //final dbRef2 = FirebaseDatabase.instance.reference();
 
 
   @override
   Widget build(BuildContext context) {
-    List lists = List();
+    Map<String, String> lists = new Map();
+   // Map<String, String> comList = new Map();
+
     return Scaffold(
       appBar: AppBar(
         title: Text("Firebase Demo"),
@@ -25,8 +28,9 @@ class _TestPageState extends State<TestPage> {
               lists.clear();
               Map<dynamic, dynamic> values = snapshot.data.value;
               values.forEach((key, values) {
-                lists.add(values);
+                lists[key] = values;
               });
+              // lists.addAll(values);
               return new ListView.builder(
                   shrinkWrap: true,
                   itemCount: lists.length,
@@ -35,9 +39,9 @@ class _TestPageState extends State<TestPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
-                          Text("medical: " + lists[index]["medical"]),
-                          Text("cosmetic: "+ lists[index]["cosmetic"]),
-                          Text("ecobenefit: " +lists[index]["ecobenefit"]),
+                          Text("medical: " + lists["medical"]),
+                          Text("cosmetic: "+ lists["cosmetic"]),
+                          Text("ecobenefit: " +lists["ecobenefit"]),
                         ],
                       ),
                     );
@@ -46,5 +50,6 @@ class _TestPageState extends State<TestPage> {
             return CircularProgressIndicator();
           }),
     );
+
   }
 }

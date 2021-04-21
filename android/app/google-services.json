@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "636523425288",
+    "firebase_url": "https://flash-chat-77d47-default-rtdb.firebaseio.com",
+    "project_id": "flash-chat-77d47",
+    "storage_bucket": "flash-chat-77d47.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636523425288:android:734e7444b4884b69dcebbd",
+        "android_client_info": {
+          "package_name": "co.roshanigangulisilva.flash_chat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "636523425288-tlflar3j0k7lc3bv07kgcbp29m88st4f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeSBiCgMJiRlgz60ADUf9DRR_yL2uTKw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "636523425288-tlflar3j0k7lc3bv07kgcbp29m88st4f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:636523425288:android:d77d74c70ecd7295dcebbd",
+        "android_client_info": {
+          "package_name": "comzestfultribu.lilyora"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "636523425288-tlflar3j0k7lc3bv07kgcbp29m88st4f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBeSBiCgMJiRlgz60ADUf9DRR_yL2uTKw4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "636523425288-tlflar3j0k7lc3bv07kgcbp29m88st4f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

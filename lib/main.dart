@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lilyora/screens/capture_screen.dart';
 import 'package:lilyora/screens/flower_screen.dart';
@@ -9,7 +10,9 @@ import 'package:lilyora/screens/profile_screen.dart';
 import 'package:lilyora/screens/search_screen.dart';
 import 'package:lilyora/screens/test_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -23,7 +26,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.deepPurpleAccent,
 
       ),
-      home: NavigationScreen(),
+      home: IntroScreen(),
       routes: {
         NavigationScreen.id: (context) => NavigationScreen(),
         IntroScreen.id: (context) => IntroScreen(),
