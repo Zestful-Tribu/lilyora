@@ -100,6 +100,9 @@ class _SearchScreenState extends State<SearchScreen> {
                 itemBuilder: (context, index) {
                 return ListTile(
                   contentPadding: EdgeInsets.all(5),
+                  onTap: () {
+
+                  },
                   leading:Container(
                     height: 70,
                     width: 70,

@@ -9,6 +9,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:lilyora/components/appbar.dart';
 import 'package:lilyora/components/drawer.dart';
 import 'package:lilyora/constants.dart';
+import 'package:lilyora/utils/fire_storage.dart';
 
 class FlowerScreen extends StatefulWidget {
   static String id = "flower_screen";
@@ -44,6 +45,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
 
   var dbRefs;
 
+  String imageFromFire;
 
   @override
   void initState() {
@@ -82,6 +84,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
         setState(() {
           result = response.data;
           loadFirebaseStorage();
+          getImageFromStore(context, "${result.toLowerCase()}.jpg");
         });
         print(result);
     })
@@ -101,6 +104,16 @@ class _FlowerScreenState extends State<FlowerScreen> {
           lists[key] = values;
         });
       }
+    });
+  }
+
+  Future<Widget> getImageFromStore(BuildContext context, String imageName) async {
+    String img;
+    await FireStorageService.loadImage(context, imageName).then((value){
+      img = value.toString();
+    });
+    setState(() {
+      imageFromFire = img;
     });
   }
 
@@ -125,7 +138,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
             children: [
               Container(
                 child: Container(
-                  margin:EdgeInsets.only(left:75.0,top:75.0,right:75.0,bottom:10.0),
+                  margin:EdgeInsets.only(left:75.0,top:20.0,right:75.0,bottom:10.0),
                   height: 200,
                   width: 25,
                   alignment: Alignment.center,
@@ -133,7 +146,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                     shape: BoxShape.circle,
                     image: DecorationImage(
 
-                      image:image != null ? FileImage(image) : AssetImage("assets/roseflower.jpg"),
+                      image:imageFromFire != null ? NetworkImage(imageFromFire) : AssetImage("assets/roseflower.jpg"),
                       fit: BoxFit.fill,
                     ),
                     //color: Colors.white,
