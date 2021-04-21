@@ -89,7 +89,7 @@ class _HomePageState extends State<HomePage>{
             ),
 
               ],
-                  color: Color(0xFF56C596),),
+                  color: Primary_Color),
 
               child: Column(
                 children: [
