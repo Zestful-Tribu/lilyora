@@ -9,10 +9,21 @@ class smallFlowerImg extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 15.0),
+      margin: EdgeInsets.only(left: 23.0),
       height: 70,
       width: 70,
       decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              offset: Offset(2.0,2.0),
+              blurRadius: 2.0,
+              spreadRadius: 1.0,
+
+
+              //borderRadius: BorderRadius.circular(0),
+            ),
+
+          ],
           color: Colors.teal,
           shape: BoxShape.circle,
           image: DecorationImage(
@@ -21,6 +32,17 @@ class smallFlowerImg extends StatelessWidget {
             ),
             fit: BoxFit.fill,
           )
+      ),
+      child: Container(
+        alignment: Alignment.center,
+        margin: const EdgeInsets.only(top: 105),
+        child: Text(
+          "Name",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 15,
+          ),
+        ),
       ),
     );
   }

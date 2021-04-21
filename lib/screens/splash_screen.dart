@@ -22,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
 
-    //Timer(Duration(seconds: 6), ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>NavigationScreen())));
+    Timer(Duration(seconds: 4), ()=>Navigator.push(context, MaterialPageRoute(builder: (context)=>NavigationScreen())));
 
   }
 
@@ -30,18 +30,20 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
+
           Container(
-            margin: const EdgeInsets.only(bottom: 0.0),
+            margin: const EdgeInsets.only(top:80,bottom: 0.0),
             child: SvgPicture.asset("assets/lilyora logo svg.svg",
             height: 200,)
           ),
           Container(
 
-            margin: const EdgeInsets.only(top: 0.0),
+            margin: const EdgeInsets.only(top: 0.0, bottom: 50),
             child: Text("Lilyora",
               style:GoogleFonts.lobster(fontSize: 45, color: Primary_Color2),
             ),
@@ -54,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
               margin: const EdgeInsets.only(top: 80.0),
               child: SpinKitThreeBounce(color: Primary_Color,)),
 
-          Container(
+        /*  Container(
             padding: const EdgeInsets.only(top: 100.0),
             child: Text(
               "By",
@@ -67,7 +69,8 @@ class _SplashScreenState extends State<SplashScreen> {
               "Zestful-Tribu",
               style: GoogleFonts.russoOne(fontSize: 20, color: Primary_Color2),
             ),
-          ),
+          ),*/
+
         ],
 
       ),
