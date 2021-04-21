@@ -68,12 +68,12 @@ class _SearchScreenState extends State<SearchScreen> {
           children: <Widget>[
            Container(
              decoration: BoxDecoration(
-               color: Colors.yellow,
+               color: Colors.greenAccent,
                borderRadius: BorderRadius.circular(20),
              ),
-             margin: EdgeInsets.all(10),
+             margin: EdgeInsets.all(20),
              height: 50,
-             width: 200,
+             width: 450,
              //color: Colors.red,
              padding: const EdgeInsets.all(10.0),
              child: TextField(
