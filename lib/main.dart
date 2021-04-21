@@ -9,6 +9,7 @@ import 'package:lilyora/screens/navigation_screen.dart';
 import 'package:lilyora/screens/profile_screen.dart';
 import 'package:lilyora/screens/search_screen.dart';
 import 'package:lilyora/screens/test_screen.dart';
+import 'package:lilyora/screens/splash_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.deepPurpleAccent,
 
       ),
-      home: IntroScreen(),
+      home: SplashScreen(),
       routes: {
         NavigationScreen.id: (context) => NavigationScreen(),
         IntroScreen.id: (context) => IntroScreen(),

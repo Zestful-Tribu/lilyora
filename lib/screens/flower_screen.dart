@@ -31,14 +31,18 @@ class _FlowerScreenState extends State<FlowerScreen> {
   ];
   String dynamicDefinitionMedical;
   String dynamicDefinitionCosmetic;
-  String dynamicDefinition;
-  String dynamicDefinition1;
+  String dynamicDefinitionEdibility;
+  String dynamicDefinitionDecorative;
+  String dynamicDefinitionEnv;
   bool openMedical = false;
   bool openCosmetic = false;
-  bool open = false;
-  bool open1 = false;
+  bool openEdibility = false;
+  bool openDecorative = false;
+  bool openEnv = false;
 
   String result = "anthurium";
+
+  var dbRefs;
 
 
   @override
@@ -47,7 +51,6 @@ class _FlowerScreenState extends State<FlowerScreen> {
     galleyImage();
     setState(() {
       uploadImage(image);
-      loadFirebaseStorage();
     });
   }
 
@@ -73,11 +76,12 @@ class _FlowerScreenState extends State<FlowerScreen> {
     // local url -> http://10.0.2.2:5000/predict
     Dio dio = new Dio();
     await dio
-      .post("https://zestfultribulilyora.el.r.appspot.com/predict", data: formData)
+      .post("http://10.0.2.2:5000/predict", data: formData)
       .then((response){
         print(response);
         setState(() {
           result = response.data;
+          loadFirebaseStorage();
         });
         print(result);
     })
@@ -87,7 +91,8 @@ class _FlowerScreenState extends State<FlowerScreen> {
   Map<String, String> lists = new Map();
 
   void loadFirebaseStorage() {
-    final dbRefs = FirebaseDatabase.instance.reference().child(result.toLowerCase());
+    lists.clear();
+    dbRefs = FirebaseDatabase.instance.reference().child(result.toLowerCase());
     dbRefs.once().then((DataSnapshot snapshot) {
       if(snapshot.value != null){
         print('Data : ${snapshot.value}');
@@ -104,7 +109,15 @@ class _FlowerScreenState extends State<FlowerScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+        floatingActionButton: FloatingActionButton.extended(
+          onPressed: () {
+            // Add your onPressed code here!
 
+          },
+          label: const Text('Add to favourites'),
+          icon: const Icon(Icons.favorite),
+          backgroundColor: Primary_Color2,
+        ),
         drawer: LilyoraDrawer(),
         appBar: lilyora_App_Bar(context),
         body: SafeArea(
@@ -286,17 +299,11 @@ class _FlowerScreenState extends State<FlowerScreen> {
                                   icon: Icon(Icons.arrow_drop_down_circle),
                                   onPressed: () {
                                     setState(() {
-                                      open = !open;
-                                      if(open == true){
-                                        dynamicDefinition = "A rose is a woody "
-                                            "perennial flowering plant of the "
-                                            "genus Rosa, in the family Rosaceae, "
-                                            "or the flower it bears. ... They form "
-                                            "a group of plants that can be erect"
-                                            " shrubs, climbing, or trailing, with "
-                                            "stems that are often armed with sharp prickles.";
+                                      openEdibility = !openEdibility;
+                                      if(openEdibility == true){
+                                        dynamicDefinitionEdibility = lists["edibility"];
                                       }else{
-                                        dynamicDefinition = null;
+                                        dynamicDefinitionEdibility = null;
                                       }
 
                                     });
@@ -306,7 +313,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                             ),
                           ),
                           Container(
-                            child: dynamicDefinition == null ? null : Text("$dynamicDefinition"),
+                            child: dynamicDefinitionEdibility == null ? null : Text("$dynamicDefinitionEdibility"),
                           )
 
                         ],
@@ -337,7 +344,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text("Decarative Uses",
+                                Text("Decorative Uses",
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.bold,
@@ -347,17 +354,11 @@ class _FlowerScreenState extends State<FlowerScreen> {
                                   icon: Icon(Icons.arrow_drop_down_circle),
                                   onPressed: () {
                                     setState(() {
-                                      open1 = !open1;
-                                      if(open1 == true){
-                                        dynamicDefinition1 = "A rose is a woody "
-                                            "perennial flowering plant of the "
-                                            "genus Rosa, in the family Rosaceae, "
-                                            "or the flower it bears. ... They form "
-                                            "a group of plants that can be erect"
-                                            " shrubs, climbing, or trailing, with "
-                                            "stems that are often armed with sharp prickles.";
+                                      openDecorative = !openDecorative;
+                                      if(openDecorative == true){
+                                        dynamicDefinitionDecorative = lists["decorative"];
                                       }else{
-                                        dynamicDefinition1 = null;
+                                        dynamicDefinitionDecorative = null;
                                       }
 
                                     });
@@ -367,7 +368,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                             ),
                           ),
                           Container(
-                            child: dynamicDefinition1 == null ? null : Text("$dynamicDefinition1"),
+                            child: dynamicDefinitionDecorative == null ? null : Text("$dynamicDefinitionDecorative"),
                           )
 
                         ],
@@ -377,6 +378,65 @@ class _FlowerScreenState extends State<FlowerScreen> {
                 ),
 
               ),
+              Container(
+                child: Container(
+                  margin:EdgeInsets.all(20.0),
+                  padding: EdgeInsets.only(left: 8, right: 8),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.all(Radius.circular(30)),
+                      border: Border.all(
+                        color: Primary_Color,
+
+                      )
+
+                  ),
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Environmental benefit",
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                IconButton(
+                                  icon: Icon(Icons.arrow_drop_down_circle),
+                                  onPressed: () {
+                                    setState(() {
+                                      openEnv = !openEnv;
+                                      if(openEnv == true){
+                                        dynamicDefinitionEnv = lists["e-benefit"];
+                                      }else{
+                                        dynamicDefinitionEnv = null;
+                                      }
+
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
+                          ),
+                          Container(
+                            child: dynamicDefinitionEnv == null ? null : Text("$dynamicDefinitionEnv"),
+                          )
+
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+
+              ),
+
+              SizedBox(
+                height: 60,
+              )
 
             ],
           ),
