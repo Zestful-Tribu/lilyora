@@ -6,6 +6,7 @@ import 'package:lilyora/screens/flower_screen.dart';
 import 'package:lilyora/screens/getting_started.dart';
 import 'package:lilyora/screens/home_screen.dart';
 import 'package:lilyora/screens/intro_screen.dart';
+import 'package:lilyora/screens/login_screen.dart';
 import 'package:lilyora/screens/navigation_screen.dart';
 import 'package:lilyora/screens/profile_screen.dart';
 import 'package:lilyora/screens/search_screen.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
       ),
       home: SplashScreen(),
       routes: {
+        LoginScreen.routeName: (context) => LoginScreen(),
         NavigationScreen.id: (context) => NavigationScreen(),
         IntroScreen.id: (context) => IntroScreen(),
         HomeScreen.id: (context) => HomeScreen(),
