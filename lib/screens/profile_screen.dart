@@ -7,6 +7,7 @@ import 'package:lilyora/screens/capture_screen.dart';
 import 'package:lilyora/screens/home_screen.dart';
 import 'package:lilyora/screens/navigation_screen.dart';
 import 'package:lilyora/screens/search_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -17,6 +18,25 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+
+  String userEmail;
+
+  void readDataFromShared() async{
+    final prefs = await SharedPreferences.getInstance();
+    final email = prefs.getString("current_user");
+    setState(() {
+      userEmail = email;
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    setState(() {
+      readDataFromShared();
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,27 +110,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         shape: BoxShape.circle,
                         color: Primary_Color,
                         image: DecorationImage(
-                          image: AssetImage("assets/name.jpg"),
+                          image: AssetImage("assets/user.png"),
                         ),
                       ),
                     ),
                     Container(
                       child: Text(
-                        "Unknown\n"
-                        "unknown@example.com",
+                        userEmail ?? "Guest",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),
-                    IconButton(
-                      iconSize: 40,
-                      icon: Icon(
-                        Icons.arrow_drop_down,
-                      ),
-                      onPressed: () {},
-                    )
                   ],
                 ),
               ),
