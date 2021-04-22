@@ -1,6 +1,7 @@
 
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:lilyora/components/appbar.dart';
 import 'package:lilyora/components/drawer.dart';
@@ -43,13 +44,17 @@ class _CaptureScreenState extends State<CaptureScreen> {
                   alignment: Alignment.center,
                   height: 400,
                   width: 300,
-                  child: image == null ? Text("Image is not loaded") : Image.file(image),
+                  child: image == null ? SvgPicture.asset("assets/image.svg",
+                    height: 200)
+
+                      : Image.file(image),
                   decoration: BoxDecoration(
-                    color: Colors.grey,
-                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.transparent,
+
                   ),
                 ),
                 Container(
+
                   margin: EdgeInsets.all(20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -61,16 +66,20 @@ class _CaptureScreenState extends State<CaptureScreen> {
                             galleryImage();
                           });
                         },
-                        textColor: Colors.white,
+                        textColor: Colors.black,
                         color: Primary_Color,
-                        elevation: 25.0,
+                       elevation: 10.0,
                         child: Row(
                           children: [
                             Icon(
-                              Icons.photo_library
+                              Icons.photo_library,
+                              color: Colors.black,
+
                             ),
+
                             SizedBox(
-                              width: 5,
+                              height: 3,
+
                             ),
                             Text(
                               "GALLERY",
@@ -91,13 +100,14 @@ class _CaptureScreenState extends State<CaptureScreen> {
                             captureImage();
                           });
                         },
-                        textColor: Colors.white,
+                        textColor: Colors.black,
                         color: Primary_Color,
-                        elevation: 25.0,
+                        elevation: 10.0,
                         child:  Row(
                           children: [
                             Icon(
-                                Icons.camera
+                                Icons.camera,
+                              color: Colors.black,
                             ),
                             SizedBox(
                               width: 5,
@@ -129,9 +139,9 @@ class _CaptureScreenState extends State<CaptureScreen> {
                         )
                       );
                     },
-                    textColor: Colors.white,
+                    textColor: Colors.black,
                     color: Primary_Color,
-                    elevation: 25.0,
+                    elevation: 10.0,
                     child:  Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
