@@ -96,8 +96,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                     Container(
                       child: Text(
-                        "Dani Daniels\n"
-                        "danidaniels@gmail.com",
+                        "Unknown\n"
+                        "unknown@example.com",
                         style: TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
