@@ -1,6 +1,9 @@
- import 'package:flappy_search_bar/flappy_search_bar.dart';
+ import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flappy_search_bar/flappy_search_bar.dart';
  import 'package:flutter/material.dart';
 import 'package:lilyora/constants.dart';
+import 'package:lilyora/screens/flower_info.dart';
+import 'package:lilyora/utils/fire_storage.dart';
 
 
 
@@ -24,11 +27,17 @@ class _SearchScreenState extends State<SearchScreen> {
     "Wood Anemone", "Yellow Cosmos"];
 
   var items = List<String>();
+  var imageList = List<String>();
+  var imagesFromStore = new List();
 
 
   @override
   void initState() {
     items.addAll(flowers);
+    setState(() {
+      // setImageUrls();
+    });
+
     super.initState();
   }
 
@@ -46,6 +55,7 @@ class _SearchScreenState extends State<SearchScreen> {
       setState(() {
         items.clear();
         items.addAll(dummyListData);
+        // setImageUrls();
       });
       return;
 
@@ -54,12 +64,41 @@ class _SearchScreenState extends State<SearchScreen> {
       setState(() {
         items.clear();
         items.addAll(flowers);
+        // setImageUrls();
       });
     }
   }
 
 
+  // void getImageFromStore(BuildContext context, String imageName) async {
+  //   String img;
+  //   await FireStorageService.loadImage(context, imageName).then((value){
+  //     img = value.toString();
+  //     imageList.add(img);
+  //   });
+  //   // return img;
+  // }
+  //
+  // //getting the image urls
+  // void setImageUrls(){
+  //   // imagesFromStore.clear();
+  //   imageList.clear();
+  //   for(int i = 0; i < items.length; i++){
+  //     getImageFromStore(context, '${items[i].toLowerCase()}.jpg');
+  //     // imagesFromStore.add(imageUrl.toString());
+  //   }
+  // }
 
+  Future<Widget> getImageFromFire(BuildContext context, String imageName) async {
+    Image image;
+    await FireStorageService.loadImage(context, imageName).then((value) {
+      image = Image.network(
+        value.toString(),
+        fit: BoxFit.scaleDown,
+      );
+    });
+    return image;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -80,6 +119,7 @@ class _SearchScreenState extends State<SearchScreen> {
              child: TextField(
                onChanged: (value){
                  filterSearchResult(value);
+
                },
                style:(
                    TextStyle(
@@ -101,20 +141,42 @@ class _SearchScreenState extends State<SearchScreen> {
                 itemCount:items.length,
                 itemBuilder: (context, index) {
                 return ListTile(
-                  contentPadding: EdgeInsets.all(5),
-                  leading:Container(
-                    height: 70,
-                    width: 70,
-                    decoration: BoxDecoration(
-                        color: Colors.teal,
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          image: AssetImage(
-                              "assets/tulip flower.png"
+                  contentPadding: EdgeInsets.all(10),
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => FlowerInfo(result: items[index]))
+                    );
+                  },
+                  leading: FutureBuilder(
+                    future: getImageFromFire(context, "${items[index].toLowerCase()}.jpg"),
+                    builder: (context, snapshot) {
+                      if(snapshot.connectionState == ConnectionState.done) {
+                        return Container(
+                          width: 70,
+                          height: 70,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(18.0)),
+                            color: Primary_Color,
                           ),
-                          fit: BoxFit.fill,
-                        )
-                    ),
+                          child: snapshot.data,
+                        );
+                      }
+
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return Container(
+                          width: 70,
+                          height: 70,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.all(Radius.circular(8.0)),
+                            color: Primary_Color2,
+                          ),
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+
+                      return Container();
+                    },
                   ),
                  title: Text('${items[index]}'),
                 );
@@ -126,4 +188,17 @@ class _SearchScreenState extends State<SearchScreen> {
     );
   }
 }
+
+ // Container(
+ // height: 70,
+ // width: 70,
+ // decoration: BoxDecoration(
+ // color: Colors.teal,
+ // shape: BoxShape.circle,
+ // image: DecorationImage(
+ // image: AssetImage("assets/lilyora logo png.png"),
+ // fit: BoxFit.fill,
+ // )
+ // ),
+ // ),
 

@@ -1,35 +1,20 @@
-
-
-import 'dart:io';
-
-import 'package:dio/dio.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:lilyora/components/appbar.dart';
 import 'package:lilyora/components/drawer.dart';
 import 'package:lilyora/constants.dart';
 import 'package:lilyora/utils/fire_storage.dart';
 
-class FlowerScreen extends StatefulWidget {
-  static String id = "flower_screen";
-
-  PickedFile pickedGalleryImage;
-  PickedFile pickedCaptureImage;
-  FlowerScreen({this.pickedGalleryImage});
+class FlowerInfo extends StatefulWidget {
+  static String id = "flower_info";
+  String result;
+  FlowerInfo({this.result});
 
   @override
-  _FlowerScreenState createState() => _FlowerScreenState();
-
+  _FlowerInfoState createState() => _FlowerInfoState();
 }
 
-class _FlowerScreenState extends State<FlowerScreen> {
-
-  File image;
-  String valueChoose;
-  List listItem = [
-    "Item1","Item2","Item3","Item4",
-  ];
+class _FlowerInfoState extends State<FlowerInfo> {
   String dynamicDefinitionMedical;
   String dynamicDefinitionCosmetic;
   String dynamicDefinitionEdibility;
@@ -41,61 +26,16 @@ class _FlowerScreenState extends State<FlowerScreen> {
   bool openDecorative = false;
   bool openEnv = false;
 
-  String result = "anthurium";
 
   var dbRefs;
 
   String imageFromFire;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    galleyImage();
-    setState(() {
-      uploadImage(image);
-    });
-  }
-
-
-
-  Future galleyImage() async {
-    setState(() {
-      if(widget.pickedGalleryImage != null) {
-        image = File(widget.pickedGalleryImage.path);
-      } else {
-        print("no image is selected");
-      }
-    });
-  }
-
-  uploadImage(File file) async {
-    String imgFileName = file.path.split('/').last;
-    FormData formData = FormData.fromMap({
-      'image':
-      await MultipartFile.fromFile(file.path, filename: imgFileName),
-    });
-
-    // local url -> http://10.0.2.2:5000/predict
-    Dio dio = new Dio();
-    await dio
-      .post("http://10.0.2.2:5000/predict", data: formData)
-      .then((response){
-        print(response);
-        setState(() {
-          result = response.data;
-          loadFirebaseStorage();
-          getImageFromStore(context, "${result.toLowerCase()}.jpg");
-        });
-        print(result);
-    })
-    .catchError((error) => print(error));
-  }
-
   Map<String, String> lists = new Map();
 
   void loadFirebaseStorage() {
     lists.clear();
-    dbRefs = FirebaseDatabase.instance.reference().child(result.toLowerCase());
+    dbRefs = FirebaseDatabase.instance.reference().child(widget.result.toLowerCase());
     dbRefs.once().then((DataSnapshot snapshot) {
       if(snapshot.value != null){
         print('Data : ${snapshot.value}');
@@ -117,12 +57,16 @@ class _FlowerScreenState extends State<FlowerScreen> {
     });
   }
 
-
-
+  @override
+  void initState() {
+    // TODO: implement initState
+    loadFirebaseStorage();
+    getImageFromStore(context, '${widget.result.toLowerCase()}.jpg');
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         floatingActionButton: FloatingActionButton.extended(
           onPressed: () {
@@ -159,7 +103,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
                 children: [
                   Container(
                     child: Text(
-                        result,
+                      widget.result,
                       style: TextStyle(
                         fontSize: 20.0,
                       ),
@@ -174,7 +118,6 @@ class _FlowerScreenState extends State<FlowerScreen> {
               ),
               Container(
                 child: Container(
-
                   margin:EdgeInsets.all(20.0),
                   padding: EdgeInsets.only(left: 8, right: 8),
                   decoration: BoxDecoration(
@@ -458,26 +401,5 @@ class _FlowerScreenState extends State<FlowerScreen> {
           ),
         )
     );
-
   }
 }
-
-
-// DropdownButton(
-// hint: Text("Medical Values"),
-// dropdownColor: Colors.grey,
-// icon: Icon(Icons.arrow_drop_down_circle),
-// isExpanded: true,
-// value:valueChoose,
-// onChanged: (newValue){
-// setState(() {
-// valueChoose = newValue;
-// });
-// },
-// items: listItem.map((valueItem){
-// return DropdownMenuItem(
-// value:valueItem,
-// child: Text(valueItem),
-// );
-// }).toList()
-// ),

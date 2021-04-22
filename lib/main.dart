@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:lilyora/screens/capture_screen.dart';
+import 'package:lilyora/screens/flower_info.dart';
 import 'package:lilyora/screens/flower_screen.dart';
 import 'package:lilyora/screens/getting_started.dart';
 import 'package:lilyora/screens/home_screen.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
         ProfileScreen.id: (context) => ProfileScreen(),
         GettingStarted.id: (context) => GettingStarted(),
         FlowerScreen.id: (context) => FlowerScreen(),
+        FlowerInfo.id: (context) => FlowerInfo(),
       },
     );
   }
