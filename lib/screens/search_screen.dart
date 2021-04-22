@@ -1,5 +1,6 @@
  import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flappy_search_bar/flappy_search_bar.dart';
+import 'package:flutter/cupertino.dart';
  import 'package:flutter/material.dart';
 import 'package:lilyora/constants.dart';
 import 'package:lilyora/screens/flower_info.dart';
@@ -108,8 +109,8 @@ class _SearchScreenState extends State<SearchScreen> {
           children: <Widget>[
            Container(
              decoration: BoxDecoration(
-               color: Primary_Color,
-               borderRadius: BorderRadius.circular(2),
+               color: Colors.transparent,
+               borderRadius: BorderRadius.circular(20),
              ),
              margin: EdgeInsets.all(20),
              height: 50,
@@ -128,10 +129,10 @@ class _SearchScreenState extends State<SearchScreen> {
                ),
                decoration: new InputDecoration(hintText: "Search here",
                  hintStyle:TextStyle(
-                   color:Colors.white,
-                   fontSize: 20,
+                   color:Colors.black,
+                   fontSize: 15,
                  ),
-                 suffixIcon: Icon(Icons.search)
+                 suffixIcon: Icon(Icons.search, color: Colors.black,)
                ),
              ),
              ),
@@ -157,10 +158,16 @@ class _SearchScreenState extends State<SearchScreen> {
                           height: 70,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.all(Radius.circular(18.0)),
-                            color: Primary_Color,
+                            color: Colors.transparent,
+
+
                           ),
+
+
                           child: snapshot.data,
+
                         );
+
                       }
 
                       if (snapshot.connectionState == ConnectionState.waiting) {
