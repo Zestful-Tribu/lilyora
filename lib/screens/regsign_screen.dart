@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lilyora/screens/navigation_screen.dart';
 
 class RegisterSignin extends StatefulWidget {
   static String id = "register_signin";
@@ -8,8 +10,8 @@ class RegisterSignin extends StatefulWidget {
 
 class _RegisterSigninState extends State<RegisterSignin> {
   String _password;
-
   String _email;
+  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +46,8 @@ class _RegisterSigninState extends State<RegisterSignin> {
                     child: OutlinedButton(
                       child: Text("Register"),
                       onPressed: (){
-
+                        auth.createUserWithEmailAndPassword(email: _email, password: _password);
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => NavigationScreen()));
                       },
                     ),
                   ),
@@ -52,7 +55,8 @@ class _RegisterSigninState extends State<RegisterSignin> {
                     child: OutlinedButton(
                       child: Text("Sign in"),
                       onPressed: (){
-
+                        auth.signInWithEmailAndPassword(email: _email, password: _password);
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => NavigationScreen()));
                       },
                     ),
                   )

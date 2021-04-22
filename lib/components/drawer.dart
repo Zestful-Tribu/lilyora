@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lilyora/constants.dart';
 import 'package:lilyora/screens/capture_screen.dart';
@@ -5,9 +6,9 @@ import 'package:lilyora/screens/navigation_screen.dart';
 import 'package:lilyora/screens/profile_screen.dart';
 
 class LilyoraDrawer extends StatelessWidget {
-  const LilyoraDrawer({
-    Key key,
-  }) : super(key: key);
+
+  final auth = FirebaseAuth.instance;
+
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +33,28 @@ class LilyoraDrawer extends StatelessWidget {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                           image: AssetImage(
-                              "assets/name.jpg"
+                              "assets/user.png"
                           ),
                           fit: BoxFit.fill
                       ),
                     ),
                   ),
-                  Text('Dani Daniels', style: TextStyle(fontSize: 22, color: Colors.white),),
+                  Text('Unknown', style: TextStyle(fontSize: 22, color: Colors.white),),
+                  OutlinedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0))),
+                    ),
+                    child: Text(
+                      "Log out!",
+                      style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: FontWeight.bold
+                      ),
+                    ),
+                    onPressed: (){
+                      auth.signOut();
+                    },
+                  )
                 ],
               ),
             ),
