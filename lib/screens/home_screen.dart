@@ -32,7 +32,42 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage>{
 
+  final flowers = [
+    "Anthurium", "Bell flower", "Calendular", "Caliandra", "Cannas", "Cardinals Guard", "Chess flower",
+    "Cleome Hassleriana", "Colstsfoot", "Common Dandelion", "Creeping Buttercup", "Daffodil", "Daisy", "Dandelion",
+    "Golden Penda", "Golden Shrimp", "Irises", "Jasmine", "Kapuru", "Leucantheum Maximum",
+    "Malpighiaceae", "Manel", "Mountain Marigold", "Orchid Pink", "Orchid Yellow", "Pentas Lanceolata", "Phlox",
+    "Phyllis African Marigold", "Plumbago Auriculata", "Rose", "Rose of venesuela", "Snowdrop", "Sunflower",
+    "Tanaman Hias Bunga Pink Kasturi", "Tiger Lily", "Viola", "Wedelia", "Wild Pansy", "Willowleaf Angelon", "Willowleaf Angelon(purple)",
+    "Wood Anemone", "Yellow Cosmos"];
 
+  final popularFlowers = [
+    "Sunflower", "Tiger Lily", "Jasmine", "Anthurium", "Manel",
+  ];
+
+  var dbRefs;
+  var rand = new Random();
+  String imageFromFire;
+  Map<String, String> lists = new Map();
+
+  String getRandomFlower(){
+    int rNum = rand.nextInt(5);
+    return popularFlowers[rNum];
+  }
+
+  void loadFirebaseStorage() {
+    lists.clear();
+    dbRefs = FirebaseDatabase.instance.reference().child(getRandomFlower().toLowerCase());
+    dbRefs.once().then((DataSnapshot snapshot) {
+      if(snapshot.value != null){
+        print('Data : ${snapshot.value}');
+        Map<dynamic, dynamic> values = snapshot.value;
+        values.forEach((key, values) {
+          lists[key] = values;
+        });
+      }
+    });
+  }
 
 
 
