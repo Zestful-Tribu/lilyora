@@ -23,7 +23,7 @@ class LilyoraDrawer extends StatelessWidget {
                 children: <Widget>[
                   Container(
                     width: 100,
-                    height: 100,
+                    height: 101,
                     margin: EdgeInsets.only(
                       top: 30,
                       bottom: 20,

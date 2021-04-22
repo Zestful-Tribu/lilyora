@@ -118,6 +118,8 @@ class _FlowerScreenState extends State<FlowerScreen> {
   }
 
 
+
+
   @override
   Widget build(BuildContext context) {
 
@@ -172,6 +174,7 @@ class _FlowerScreenState extends State<FlowerScreen> {
               ),
               Container(
                 child: Container(
+
                   margin:EdgeInsets.all(20.0),
                   padding: EdgeInsets.only(left: 8, right: 8),
                   decoration: BoxDecoration(

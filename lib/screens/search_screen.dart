@@ -108,8 +108,8 @@ class _SearchScreenState extends State<SearchScreen> {
           children: <Widget>[
            Container(
              decoration: BoxDecoration(
-               color: Colors.greenAccent,
-               borderRadius: BorderRadius.circular(20),
+               color: Primary_Color,
+               borderRadius: BorderRadius.circular(2),
              ),
              margin: EdgeInsets.all(20),
              height: 50,
@@ -123,12 +123,13 @@ class _SearchScreenState extends State<SearchScreen> {
                },
                style:(
                    TextStyle(
-                       color: Colors.black
+                       color: Colors.white,
                    )
                ),
                decoration: new InputDecoration(hintText: "Search here",
                  hintStyle:TextStyle(
-                   color:Colors.black,
+                   color:Colors.white,
+                   fontSize: 20,
                  ),
                  suffixIcon: Icon(Icons.search)
                ),
