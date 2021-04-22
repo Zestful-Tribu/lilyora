@@ -9,7 +9,9 @@ import 'package:lilyora/screens/intro_screen.dart';
 import 'package:lilyora/screens/login_screen.dart';
 import 'package:lilyora/screens/navigation_screen.dart';
 import 'package:lilyora/screens/profile_screen.dart';
+import 'package:lilyora/screens/regsign_screen.dart';
 import 'package:lilyora/screens/search_screen.dart';
+import 'package:lilyora/screens/signup_screen.dart';
 import 'package:lilyora/screens/test_screen.dart';
 import 'package:lilyora/screens/splash_screen.dart';
 
@@ -29,8 +31,9 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.deepPurpleAccent,
 
       ),
-      home: SplashScreen(),
+      home: RegisterSignin(),
       routes: {
+        RegisterSignin.id: (context) => RegisterSignin(),
         LoginScreen.routeName: (context) => LoginScreen(),
         NavigationScreen.id: (context) => NavigationScreen(),
         IntroScreen.id: (context) => IntroScreen(),
