@@ -81,8 +81,19 @@ class _HomePageState extends State<HomePage> {
   ];
 
   var dbRefs;
+  var dbRefs2;
   var rand = new Random();
-  String imageFromFire;
+  String imageFromFire; // for the do you know flower
+
+  // images -> importance of flowers
+  String cosmeticImg;
+  String decorativeImg;
+  String edibilityImg;
+  String ecoImg;
+
+  // flower urls
+  List<String> flowerURLs = new List();
+
   String randomFlowerString;
   Map<String, String> lists = new Map();
   String stringGenus = "N/A";
@@ -124,6 +135,34 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  Future<Widget> getImagesForImportance(BuildContext context, String cosmetic,
+      String decorative, String edibility, String ebenefit) async {
+    String cos;
+    String dec;
+    String edib;
+    String eco;
+
+    await FireStorageService.loadHomeImage(context, cosmetic).then((value) {
+      cos = value.toString();
+    });
+    await FireStorageService.loadHomeImage(context, edibility).then((value) {
+      edib = value.toString();
+    });
+    await FireStorageService.loadHomeImage(context, decorative).then((value) {
+      dec = value.toString();
+    });
+    await FireStorageService.loadHomeImage(context, ebenefit).then((value) {
+      eco = value.toString();
+    });
+    setState(() {
+      cosmeticImg = cos;
+      decorativeImg = dec;
+      edibilityImg = edib;
+      ecoImg = eco;
+    });
+  }
+
+
   @override
   void initState() {
     // TODO: implement initState
@@ -131,6 +170,8 @@ class _HomePageState extends State<HomePage> {
       getRandomFlower();
       loadFirebaseStorage();
       getImageFromStore(context, "${randomFlowerString.toLowerCase()}.jpg");
+      getImagesForImportance(context, "cosmetic.jpg", "decoration.jpg",
+          "edibility.jpg", "eco.jpg");
     });
 
     super.initState();
@@ -138,7 +179,6 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-
     setState(() {
       openflowerDay = !openflowerDay;
       stringGenus = lists['genus'];
@@ -152,40 +192,13 @@ class _HomePageState extends State<HomePage> {
         child: ListView(
           children: [
             Container(
-                //test commit
+                //test com
                 ),
-            Container(
-              margin: EdgeInsets.only(top: 20),
-              padding: EdgeInsets.only(left: 10),
-              child: Text(
-                "Popular Flowers",
-                style: GoogleFonts.poppins(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 10.0),
-              height: 120.0,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                children: [
-                  smallFlowerImg(),
-                  smallFlowerImg(),
-                  smallFlowerImg(),
-                  smallFlowerImg(),
-                  smallFlowerImg(),
-                  smallFlowerImg(),
-                  smallFlowerImg(),
-                ],
-              ),
-            ),
             Container(
               margin: EdgeInsets.only(top: 10, bottom: 10.0),
               padding: EdgeInsets.only(bottom: 10, left: 10),
               child: Text(
-                "Flower of The Day",
+                "A flower to know",
                 style: GoogleFonts.poppins(
                     fontSize: 20,
                     color: Colors.black,
@@ -195,14 +208,17 @@ class _HomePageState extends State<HomePage> {
             Container(
               padding: EdgeInsets.all(30),
               margin: const EdgeInsets.only(left: 10.0, right: 10.0),
-              decoration: BoxDecoration(boxShadow: [
-                BoxShadow(
-                  offset: Offset(1.0, 1.0),
-                  blurRadius: 10.0,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: Offset(1.0, 1.0),
+                      blurRadius: 10.0,
 
-                  //borderRadius: BorderRadius.circular(0),
-                ),
-              ], color: Primary_Color),
+                      //borderRadius: BorderRadius.circular(0),
+                    ),
+                  ],
+                  color: Primary_Color),
               child: Column(
                 children: [
                   Row(
@@ -287,7 +303,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               padding: EdgeInsets.only(top: 20, left: 10),
               child: Text(
-                "Recently Searched",
+                "Flower Structure",
                 style: GoogleFonts.poppins(
                     fontSize: 20,
                     color: Colors.black,
@@ -295,18 +311,200 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(bottom: 10.0),
-              height: 120.0,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
+              height: 300.0,
+              padding: EdgeInsets.only(top: 20, left: 10, right: 10),
+              margin: EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage("assets/flower_structure.jpg"),
+                  fit: BoxFit.cover,
+                ),
+                borderRadius: BorderRadius.circular(20),
+                boxShadow: [
+                  BoxShadow(
+                    offset: Offset(1.0, 1.0),
+                    blurRadius: 10.0,
+
+                    //borderRadius: BorderRadius.circular(0),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.only(top: 20, left: 10),
+              child: Text(
+                "Importance of flowers",
+                style: GoogleFonts.poppins(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              margin: const EdgeInsets.only(
+                  left: 10.0, right: 10.0, top: 20, bottom: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                BoxShadow(
+                  offset: Offset(1.0, 1.0),
+                  blurRadius: 10.0,
+
+                  //borderRadius: BorderRadius.circular(0),
+                ),
+              ], color: Primary_Color),
+              child: Column(
                 children: [
-                  smallFlowerImg(),
-                  smallFlowerImg(),
-                  smallFlowerImg(),
-                  smallFlowerImg(),
-                  smallFlowerImg(),
-                  smallFlowerImg(),
-                  smallFlowerImg(),
+                  Container(
+                    // image
+                    height: 200.0,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: ecoImg != null
+                            ? NetworkImage(ecoImg)
+                            : AssetImage("assets/lilyora logo png.png"),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    // descriptions
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      "Environmental Benefit",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              margin: const EdgeInsets.only(
+                  left: 10.0, right: 10.0, top: 20, bottom: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                BoxShadow(
+                  offset: Offset(1.0, 1.0),
+                  blurRadius: 10.0,
+
+                  //borderRadius: BorderRadius.circular(0),
+                ),
+              ], color: Primary_Color),
+              child: Column(
+                children: [
+                  Container(
+                    // image
+                    height: 200.0,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: edibilityImg != null
+                            ? NetworkImage(edibilityImg)
+                            : AssetImage("assets/lilyora logo png.png"),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    // descriptions
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      "Edibility (Edible for consumption)",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              margin: const EdgeInsets.only(
+                  left: 10.0, right: 10.0, top: 20, bottom: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                BoxShadow(
+                  offset: Offset(1.0, 1.0),
+                  blurRadius: 10.0,
+
+                  //borderRadius: BorderRadius.circular(0),
+                ),
+              ], color: Primary_Color),
+              child: Column(
+                children: [
+                  Container(
+                    // image
+                    height: 200.0,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: cosmeticImg != null
+                            ? NetworkImage(cosmeticImg)
+                            : AssetImage("assets/lilyora logo png.png"),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    // descriptions
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      "Used in cosmetics",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(20),
+              margin: const EdgeInsets.only(
+                  left: 10.0, right: 10.0, top: 20, bottom: 20),
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                BoxShadow(
+                  offset: Offset(1.0, 1.0),
+                  blurRadius: 10.0,
+
+                  //borderRadius: BorderRadius.circular(0),
+                ),
+              ], color: Primary_Color),
+              child: Column(
+                children: [
+                  Container(
+                    // image
+                    height: 200.0,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
+                      image: DecorationImage(
+                        image: decorativeImg != null
+                            ? NetworkImage(decorativeImg)
+                            : AssetImage("assets/lilyora logo png.png"),
+                        fit: BoxFit.fill,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    // descriptions
+                    padding: EdgeInsets.all(20),
+                    child: Text(
+                      "Used in Decorations",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -317,7 +515,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   Text flowerDet() {
-    if(openflowerDay) {
+    if (openflowerDay) {
       return Text(
         "Genus: $stringGenus\n" +
             "Family: $stringFamily\n" +
@@ -326,10 +524,8 @@ class _HomePageState extends State<HomePage> {
           fontWeight: FontWeight.bold,
         ),
       );
-    }else{
-      return Text(
-        "Tap to display flower info"
-      );
+    } else {
+      return Text("Tap to display flower info");
     }
   }
 }
