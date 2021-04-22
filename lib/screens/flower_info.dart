@@ -395,7 +395,7 @@ class _FlowerInfoState extends State<FlowerInfo> {
 
               SizedBox(
                 height: 60,
-              )
+              ),
 
             ],
           ),

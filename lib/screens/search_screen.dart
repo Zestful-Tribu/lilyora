@@ -133,7 +133,7 @@ class _SearchScreenState extends State<SearchScreen> {
                  ),
                  suffixIcon: Icon(Icons.search)
                ),
-             )
+             ),
              ),
             Expanded(
               child:ListView.builder(
