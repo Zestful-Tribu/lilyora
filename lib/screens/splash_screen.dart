@@ -9,6 +9,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 
 class SplashScreen extends StatefulWidget {
+  static const id = "Splash";
+
 
   // This widget is the root of your application.
   @override
